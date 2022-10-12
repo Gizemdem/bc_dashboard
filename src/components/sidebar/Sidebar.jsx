@@ -6,6 +6,9 @@ import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ConnectWallet from "./Wallet";
+import { Icon, IconButton } from "@mui/material";
+
 
 const Sidebar = () =>{
     return(
@@ -35,9 +38,12 @@ const Sidebar = () =>{
                         <span>Dashboard</span>
                     </li>
                     <p className="title">CONFIRM</p>
-                    <li>
-                        <AccountBalanceWalletOutlinedIcon className="icon"/>
-                        <span>Wallet</span>
+                    <li >
+                        <IconButton onClick={ConnectWallet}>
+                            <AccountBalanceWalletOutlinedIcon className="icon"  />
+                            <span>Wallet</span>
+                        </IconButton>
+
                     </li>
                     <p className="title">USER</p>
                     <li>

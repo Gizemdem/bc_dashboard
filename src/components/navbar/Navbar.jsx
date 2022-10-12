@@ -4,6 +4,8 @@ import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
+
+
 const Navbar = () =>{
     return(
         <div className="navbar"> 
@@ -35,9 +37,8 @@ const Navbar = () =>{
                             className="avatar"
                         />
                     </div>
-
                 </div>
-
+                
             </div>        
         </div>
     );
