@@ -15,6 +15,8 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "sass": "^1.55.0",
+    "three": "^0.145.0",
+    "web-ifc-viewer": "^1.0.213",
     "web-vitals": "^2.1.4",
     "web3-react": "^5.0.5"
   },
