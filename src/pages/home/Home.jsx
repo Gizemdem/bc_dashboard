@@ -6,7 +6,6 @@ import Widget from "../../components/widget/Widget";
 import CommitContainer from "../../components/commitContainer/CommitContainer"
 
 import TopWidget from "../../components/topWidget/TopWidget"
-import ViewerContainer from "../../components/viewerContainer/ViewerContainer";
 
 
 import Table from "../../components/table/Table";   
