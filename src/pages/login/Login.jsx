@@ -1,8 +1,7 @@
 import "./login.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
-// import Container from "../../components/container/Container"
-import LoadLocalIFC from "../../components/loadLocalIFC/loadLocalIFC"
+// import Container from "../../components/viewerContainer/ViewerContainer"
 
 const Login = () => {
     return (
@@ -10,9 +9,9 @@ const Login = () => {
             <Sidebar/>
             <div className="homeContainer"> 
                 <Navbar/>
-                <div component>
-                    <LoadLocalIFC/>
-                </div>
+                {/* <div >
+                    <Container/>
+                </div> */}
             </div>          
         </div>
     )

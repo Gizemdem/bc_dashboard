@@ -7,7 +7,7 @@ import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalance
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ConnectWallet from "./Wallet";
-import { Icon, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 
 
 const Sidebar = () =>{
@@ -21,7 +21,7 @@ const Sidebar = () =>{
                 <ul>
                     <p className="title">ACCESS</p>
                     <li>
-                        <FolderOpenIcon className="icon"/>
+                        <FolderOpenIcon className="icon" />
                         <span>Folder</span>
                     </li>
                     <li>
@@ -38,9 +38,9 @@ const Sidebar = () =>{
                         <span>Dashboard</span>
                     </li>
                     <p className="title">CONFIRM</p>
-                    <li >
-                        <IconButton onClick={ConnectWallet}>
-                            <AccountBalanceWalletOutlinedIcon className="icon"  />
+                    <li>
+                        <IconButton onClick={ConnectWallet} className="icon" disableRipple="false" edge="start" >
+                            <AccountBalanceWalletOutlinedIcon   />
                             <span>Wallet</span>
                         </IconButton>
 
