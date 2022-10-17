@@ -1,6 +1,5 @@
 import "./widget.scss";
 
-
 const Widget = () => {
     return (
         <div className="widget">
