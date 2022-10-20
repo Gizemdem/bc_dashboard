@@ -1,8 +1,8 @@
 import Home from "./pages/home/Home";
 import Test from "./pages/test/Test";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/New";
+import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
+import Welcome from "./pages/welcome/Welcome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -14,11 +14,9 @@ function App() {
               <Route path="/" >
                   <Route index element = {<Home/>}/>
                   <Route path="test" element = {<Test/>}/>
-                  <Route path="users"> 
-                    <Route index element = {<List/>}/>
-                    <Route path=":userId" element = {<Single/>}/>
-                    <Route path="new" element = {<New/>}/>
-                  </Route>
+                  <Route path="welcome" element = {<Welcome/>}/>
+                  <Route path="register" element = {<Register/>}/>
+                  <Route path="login" element = {<Login/>}/>
               </Route>
           </Routes>
         </BrowserRouter>

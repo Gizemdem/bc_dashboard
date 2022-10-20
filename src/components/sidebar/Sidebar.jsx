@@ -10,6 +10,7 @@ import ConnectWallet from "./Wallet";
 import { IconButton } from "@mui/material";
 
 
+
 const Sidebar = () =>{
     return(
         <div className="sidebar">
@@ -19,10 +20,10 @@ const Sidebar = () =>{
             <hr className="hr"/>
             <div className="center"> 
                 <ul>
-                    <p className="title">ACCESS</p>
+                    <p className="title">PROJECTS</p>
                     <li>
                         <FolderOpenIcon className="icon" />
-                        <span>Folder</span>
+                        <span>Access</span>
                     </li>
                     <li>
                         <GroupsOutlinedIcon className="icon"/>
@@ -38,12 +39,9 @@ const Sidebar = () =>{
                         <span>Dashboard</span>
                     </li>
                     <p className="title">CONFIRM</p>
-                    <li>
-                        <IconButton onClick={ConnectWallet} className="icon" disableRipple="false" edge="start" >
-                            <AccountBalanceWalletOutlinedIcon   />
-                            <span>Wallet</span>
-                        </IconButton>
-
+                    <li>                        
+                        <AccountBalanceWalletOutlinedIcon onClick={ConnectWallet} className="icon" />
+                        <span>Wallet</span>
                     </li>
                     <p className="title">USER</p>
                     <li>
