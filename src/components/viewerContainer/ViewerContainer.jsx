@@ -50,10 +50,7 @@ const ViewerContainer = forwardRef((props, ref) => {
         <>
           <div className= "viewerContainer" style={{
                 position: 'relative',
-                width: '60vw',
-                
-                overflow: 'hidden',
-                
+                overflow: 'hidden',                
 
                 }}
             ref={ref}
