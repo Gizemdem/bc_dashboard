@@ -11,7 +11,7 @@ import { IconButton } from "@mui/material";
 
 
 
-const Sidebar = () =>{
+const Sidebar = (props) =>{
     return(
         <div className="sidebar">
             <div className="top">
@@ -22,7 +22,7 @@ const Sidebar = () =>{
                 <ul>
                     <p className="title">PROJECTS</p>
                     <li>
-                        <FolderOpenIcon className="icon" />
+                        <FolderOpenIcon onClick={props.openDoc} className="icon" />
                         <span>Access</span>
                     </li>
                     <li>

@@ -31,6 +31,7 @@ const Home = () => {
             const ifcViewer = new IfcViewerAPI({container, backgroundColor: new Color(0xffffff)});
             ifcViewer.addAxes();
             ifcViewer.addGrid();
+            ifcViewer.IFC.setWasmPath('../../');
             ifcViewer.IFC.loader.ifcManager.applyWebIfcConfig({
                 COORDINATE_TO_ORIGIN: true,
                 USE_FAST_BOOLS: false,
@@ -76,9 +77,9 @@ const Home = () => {
     //   ifcOnLoad();
     return (
         <div className="home"> 
-            <Sidebar/>
+            <Sidebar openDoc={ifcOnLoad}/>
             <div className="homeContainer"> 
-                <Navbar/>
+                <Navbar />
                 <div className="widgets">
                     <TopWidget/>
                 </div>
