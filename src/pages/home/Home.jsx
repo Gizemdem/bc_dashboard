@@ -93,6 +93,7 @@ const Home = () => {
                     <ViewerContainer 
                         ref={ifcContainer}
                         viewer={viewer}
+                        setSelectedData={{}} 
                     />
                     <CommitContainer  />
                 </div>

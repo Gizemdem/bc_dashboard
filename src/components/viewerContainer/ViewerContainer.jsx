@@ -1,10 +1,10 @@
 import "./viewerContainer.scss";
 import React, { useState, forwardRef } from "react";
-import { Popover,Grid, Typography } from "@mui/material";
-import { IFCViewerAPI } from "web-ifc-viewer";
 
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { IFCViewerAPI } from "web-ifc-viewer";
+import { StatusPopover } from "../statusPopover/StatusPopover";
+
+
 
 const ViewerContainer = forwardRef((props, ref) => {
 
@@ -76,36 +76,14 @@ const ViewerContainer = forwardRef((props, ref) => {
             onContextMenu={ifcOnRightClick}
             onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
           />
-          <Popover
+          <StatusPopover
             id={id}
             open={open}
             anchorElem={anchorElem}
             onClose={handleClose}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <Grid
-              container
-              component='dl'
-              spacing={2}
-              sx={{ p: 2 }}>
-              <Grid item>
-                {curIfcRecords && Object.keys(curIfcRecords).map((key) =>
-                  curIfcRecords[key] &&
-                  <>
-                    <React.Fragment key={key}>
-                      <Typography component='dt' variant='body2'>{key}</Typography>
-                      <Typography sx={{ pb: 1 }} component='dd'>{curIfcRecords[key]}</Typography>                    
-                    </React.Fragment>                        
-                  </>
-                )}
-              </Grid>
-              <TextField />
-              <Button onClick={sendElementToTable}>Ok</Button>
-            </Grid>
-          </Popover>
+            curIfcRecords={curIfcRecords}
+            sendElementToTable={sendElementToTable}
+          />
         </>
       );
 });
