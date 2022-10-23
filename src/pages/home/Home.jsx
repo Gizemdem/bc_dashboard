@@ -77,7 +77,7 @@ const Home = () => {
     //   ifcOnLoad();
     return (
         <div className="home"> 
-            <Sidebar openDoc={ifcOnLoad}/>
+            <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes}/>
             <div className="homeContainer"> 
                 <Navbar />
                 <div className="widgets">

@@ -1,15 +1,15 @@
 import "./sidebar.scss";
+
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import PageviewOutlinedIcon from '@mui/icons-material/PageviewOutlined';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import CropIcon from '@mui/icons-material/Crop';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
 import ConnectWallet from "./Wallet";
-import { IconButton } from "@mui/material";
-
-
 
 const Sidebar = (props) =>{
     return(
@@ -37,6 +37,12 @@ const Sidebar = (props) =>{
                     <li>
                         <DashboardOutlinedIcon className="icon"/>
                         <span>Dashboard</span>
+                    </li>
+                    <li>
+                        <CropIcon onCLick={
+                            console.log("cropactivated")
+                        } className="icon"/>
+                        <span>Crop</span>
                     </li>
                     <p className="title">CONFIRM</p>
                     <li>                        
