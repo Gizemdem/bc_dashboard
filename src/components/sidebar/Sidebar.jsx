@@ -18,7 +18,9 @@ const Sidebar = (props) =>{
     return(
         <div className="sidebar">
             <div className="top">
-                <span className="logo"> Goldbeck </span> 
+                <Link to="/" style= {{textDecoration:"none"}} className="logo">
+                    <span > Goldbeck </span> 
+                </Link>
             </div>
             <hr className="hr"/>
             <div className="center"> 
