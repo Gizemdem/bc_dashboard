@@ -34,7 +34,7 @@ const ElementTable = (props) => {
               <TableCell className="tableCell">{row['GlobalId']}</TableCell>
               <TableCell className="tableCell">{row['Name']}</TableCell>
               <TableCell className="tableCell">{"status"}</TableCell>
-              <TableCell className="tableCell">{"date"}</TableCell>
+              <TableCell className="tableCell">{row['Date']}</TableCell>
             </TableRow>
           ))}
         </TableBody>

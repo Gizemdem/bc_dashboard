@@ -17,7 +17,20 @@ const StatusPopover = (props) => {
   const handleClose = props.onClose;
   const curIfcRecords = props.curIfcRecords;
   const sendElementToTable = props.sendElementToTable;
-  const [date, setDate] = React.useState(null);
+  const [date, setDate] = React.useState();
+
+  const handleSetDate=(newValue)=>{
+    if (newValue !== null){ 
+        if (curIfcRecords){
+          curIfcRecords["Date"]=newValue.format("DD.MMM.YY");
+        }
+        setDate(newValue);
+
+    }
+    // console.log(newValue.format("DD.MMM.YY"))
+
+    // console.log(curIfcRecords)
+  }
 
   return (
     <Popover className="statusPopover"
@@ -53,7 +66,7 @@ const StatusPopover = (props) => {
                 label="Set Date"
                 value={date}
                 onChange={(newValue) => {
-                  setDate(newValue);
+                  handleSetDate(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />

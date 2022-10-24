@@ -41,6 +41,7 @@ const ViewerContainer = forwardRef((props, ref) => {
               ifcRecords['Name'] = props.Name && props.Name?.value;
               ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
               ifcRecords['PredefinedType'] = props.PredefinedType && props.PredefinedType?.value;
+              ifcRecords['Date']="";
               setIfcRecords(ifcRecords);
               
               // let prev = selectedData;
