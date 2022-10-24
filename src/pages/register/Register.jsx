@@ -3,7 +3,7 @@ import "./register.scss"
 import { useState } from "react";
 import FormInput from "./FormInput";
 // import TopWidget from "../../components/topWidget/TopWidget"
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -75,7 +75,9 @@ const Register = () => {
                     onChange={onChange}
                 />
                 ))}
-                <button className="button">Submit</button>
+                <Link to= "/login">
+                  <button className="button">Submit</button>
+                </Link>
             </form>
         </div>
     );

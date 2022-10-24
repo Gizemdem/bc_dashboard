@@ -1,22 +1,14 @@
-import "./home.scss";
-import Sidebar  from "../../components/sidebar/Sidebar" ;
-import Navbar from "../../components/navbar/Navbar";
-import Widget from "../../components/widget/Widget";
+import "./check.scss"
+import Sidebar from "../../components/sidebar/Sidebar"
+import Navbar from "../../components/navbar/Navbar"
 
-import CommitContainer from "../../components/commitContainer/CommitContainer"
-
-import TopWidget from "../../components/topWidget/TopWidget"
-
-
-import Table from "../../components/table/Table";   
 import {Color} from "three";
 import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
 import React, { createRef, useState, useEffect } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
+import ElementTable from "../../components/elementTable/ElementTable";
 
-
-const Home = () => {
-
+const Check = () => {
     const [isLoading, setLoading] = useState(false);
     const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
@@ -24,6 +16,17 @@ const Home = () => {
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
     const [ifcLoadingErrorMessage, setIfcLoadingErrorMessage] = useState();
+
+    
+    // List of selected elements
+    const [selectedData, setSelectedData] = useState([]);
+
+    const handleSaveData = (newElement) => {
+        setSelectedData( oldArray => [...oldArray, newElement] );
+        
+        console.log(selectedData);
+    }
+
 
     useEffect(() => {
         if (ifcContainer.current) {
@@ -38,7 +41,7 @@ const Home = () => {
                 });
             setViewer(ifcViewer);
         }
-    }, []);
+    }, [ifcContainer.current]);
 
     const ifcOnLoad = async () => {
         const file = "https://raw.githubusercontent.com/IFCjs/hello-world/main/IFC/01.ifc";
@@ -61,7 +64,8 @@ const Home = () => {
         setIfcLoadingErrorMessage(err.toString());
       };
 
-    const toggleClippingPlanes = () => {
+    const toggleClippingPlanes = async () => {
+        console.log("clippingplane is loading");
         if (viewer) {
           viewer.toggleClippingPlanes();
           if (viewer.clipper.active) {
@@ -71,39 +75,27 @@ const Home = () => {
           }
         }
       };
-
-    
-
-    //   ifcOnLoad();
+      
     return (
-        <div className="home"> 
-            <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes}/>
-            <div className="homeContainer"> 
-                <Navbar />
-                <div className="widgets">
-                    <TopWidget/>
-                </div>
-                <div className="widgets">
-                    <Widget/>
-                    <Widget/>
-                    <Widget/>
-                    <Widget/>
-                </div>
-                <div className="commit-viewer-containers">
-                    <ViewerContainer 
+        <div className="check"> 
+            <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes} />
+            <div className="container" > 
+                <Navbar/>
+                <div >
+                    <ViewerContainer className="viewerContainer"
                         ref={ifcContainer}
                         viewer={viewer}
-                        setSelectedData={{}} 
+                        setSelectedData={handleSaveData}
                     />
-                    <CommitContainer  />
                 </div>
                 <div className="listContainer">
                     <div className="listTitle"> Project Collaboration</div>      
-                    <Table />
-                </div>               
-            </div>          
+                    <ElementTable data={selectedData}/>
+                </div> 
+            </div> 
+         
         </div>
     )
 }
 
-export default Home
+export default Check

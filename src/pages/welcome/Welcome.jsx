@@ -1,5 +1,6 @@
 import "./welcome.scss";
 import React from "react";
+import {Link} from "react-router-dom";
 
 const Welcome = () => {
     return(
@@ -12,8 +13,12 @@ const Welcome = () => {
                     <p>Please login. If you have not account yet, please register.</p>
                 </div>
                 <div className="bottom">
-                    <button className="buttonDisplay">Login</button>
-                    <button className="buttonDisplay">Register</button>
+                    <Link to="/login" style={{textDecoration:"none"}} className="linkDisplay">
+                        <button className="buttonDisplay">Login</button>
+                    </Link>
+                    <Link to="/register" style={{textDecoration:"none"}} className="linkDisplay">
+                        <button className="buttonDisplay">Register</button>
+                    </Link>
                 </div>
             </div>            
         </div>
