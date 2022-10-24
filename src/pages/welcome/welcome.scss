@@ -37,23 +37,28 @@
       align-items: center;
       justify-content: center;
       // margin-right: 20px;
-    
-      .buttonDisplay{
-        align-items: center;
+      .linkDisplay{
+        margin: 0px;
         width: 100%;
-        height: 50px;
-        // padding: 10px;
         margin-right: 20px;
-        border: none;
-        background-color: rebeccapurple;
-        color: white;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 18px;
-        cursor: pointer;
-        margin-top: 15px;
-        margin-bottom: 30px;
-      }
+
+        .buttonDisplay{
+          align-items: center;
+          width: 100%;
+          height: 50px;
+          // padding: 10px;
+          
+          border: none;
+          background-color: rebeccapurple;
+          color: white;
+          border-radius: 5px;
+          font-weight: bold;
+          font-size: 18px;
+          cursor: pointer;
+          margin-top: 15px;
+          margin-bottom: 30px;
+        }
+      }      
     }    
   }
 }

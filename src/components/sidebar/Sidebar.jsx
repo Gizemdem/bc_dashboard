@@ -1,5 +1,6 @@
 import "./sidebar.scss";
-
+import ConnectWallet from "./Wallet";
+//import icons
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import PageviewOutlinedIcon from '@mui/icons-material/PageviewOutlined';
@@ -9,7 +10,9 @@ import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalance
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-import ConnectWallet from "./Wallet";
+
+import {Link} from "react-router-dom";
+
 
 const Sidebar = (props) =>{
     return(
@@ -29,7 +32,9 @@ const Sidebar = (props) =>{
                         <GroupsOutlinedIcon className="icon"/>
                         <span>Collaboration</span>
                     </li>
-                    <p className="title">DASHBOARD</p>
+                    <Link to ="/check" style= {{textDecoration:"none"}}>
+                        <p className="title">DASHBOARD</p>
+                    </Link>
                     <li>
                         <PageviewOutlinedIcon className="icon"/>
                         <span>Check</span>
@@ -44,7 +49,9 @@ const Sidebar = (props) =>{
                         } className="icon"/>
                         <span>Crop</span>
                     </li>
+                    <Link to="/payment" style={{textDecoration:"none"}}>
                     <p className="title">CONFIRM</p>
+                    </Link>
                     <li>                        
                         <AccountBalanceWalletOutlinedIcon onClick={ConnectWallet} className="icon" />
                         <span>Wallet</span>
