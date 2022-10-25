@@ -33,7 +33,7 @@ const StatusPopover = (props) => {
   }
 
   return (
-    <Popover className="statusPopover"
+    <Popover className="statusPopover" 
       id={id}
       open={open}
       anchorElem={anchorElem}
@@ -43,24 +43,24 @@ const StatusPopover = (props) => {
         horizontal: 'right',
       }}
     >
-      <Grid 
+      {/* <Grid  
         container
         component='dl'
         spacing={2}
         sx={{ p: 2 }}
-        >
-          <Grid item>
+        > */}
+          <Grid className="topDiv">
             {curIfcRecords && Object.keys(curIfcRecords).map((key) =>
               curIfcRecords[key] &&
               <>
                 <React.Fragment key={key}>
-                  <Typography component='dt' variant='body2'>{key}</Typography>
+                  <Typography  className="topTitle" component='dt' variant='body2'>{key}</Typography>
                   <Typography sx={{ pb: 1 }} component='dd'>{curIfcRecords[key]}</Typography>                    
                 </React.Fragment>                        
               </>
             )}
           </Grid>
-          <div className="bottomDiv">                 
+          <Grid  className="bottomDiv">                 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="Set Date"
@@ -71,9 +71,9 @@ const StatusPopover = (props) => {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-            <Button  className="button" onClick={sendElementToTable}>Ok</Button>
-          </div> 
-      </Grid>
+            <Button  className="button" onClick={sendElementToTable}>Confirm</Button>
+          </Grid> 
+      {/* </Grid> */}
     </Popover>
   )
 }
