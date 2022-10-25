@@ -27,66 +27,64 @@ const ViewerContainer = forwardRef((props, ref) => {
   }
 
   const ifcOnClick = async (event) => {
-      if (viewer) {
-          const result = await viewer.IFC.pickIfcItem(true);
-          if (result) {
-            const props = await viewer.IFC.getProperties(result.modelID, result.id, false);
-            // console.log(props);
-            const type = await viewer.IFC.loader.ifcManager.getIfcType(result.modelID, result.id);
-            // convert props to record
-            if (props) {
-              let ifcRecords = {};
-              ifcRecords['Entity Type'] = type;
-              ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
-              ifcRecords['Name'] = props.Name && props.Name?.value;
-              ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
-              ifcRecords['PredefinedType'] = props.PredefinedType && props.PredefinedType?.value;
-              ifcRecords['Date']="";
-              setIfcRecords(ifcRecords);
-              
-              // let prev = selectedData;
-              // prev.push(ifcRecords);
-              
-              // console.log(selectedData)
-            }
-    
-            setAnchorElem(event.target);
-            // console.log(selectedData);
+    if (viewer) {
+        const result = await viewer.IFC.pickIfcItem(true);
+        if (result) {
+          const props = await viewer.IFC.getProperties(result.modelID, result.id, false);
+          // console.log(props);
+          const type = await viewer.IFC.loader.ifcManager.getIfcType(result.modelID, result.id);
+          // convert props to record
+          if (props) {
+            let ifcRecords = {};
+            ifcRecords['Entity Type'] = type;
+            ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
+            ifcRecords['Name'] = props.Name && props.Name?.value;
+            ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
+            ifcRecords['PredefinedType'] = props.PredefinedType && props.PredefinedType?.value;
+            ifcRecords['Date']="";
+            setIfcRecords(ifcRecords);
+            
+            // let prev = selectedData;
+            // prev.push(ifcRecords);
+            
+            // console.log(selectedData)
           }
+  
+          setAnchorElem(event.target);
+          // console.log(selectedData);
       }
+    }
   };
-
 
   // Create clipping plane
   const ifcOnRightClick = async () => {
-      if (viewer) {
-        viewer.clipper.deleteAllPlanes();
-        viewer.clipper.createPlane();
-      }
+    if (viewer) {
+      viewer.clipper.deleteAllPlanes();
+      viewer.clipper.createPlane();
     }
+  }
     
-    return (
-        <>
-          <div className= "viewerContainer" style={{
-                position: 'relative',
-                overflow: 'hidden',                
-
-                }}
-            ref={ref}
-            onDoubleClick={ifcOnClick}
-            onContextMenu={ifcOnRightClick}
-            onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
-          />
-          <StatusPopover
-            id={id}
-            open={open}
-            anchorElem={anchorElem}
-            onClose={handleClose}
-            curIfcRecords={curIfcRecords}
-            sendElementToTable={sendElementToTable}
-          />
-        </>
-      );
+  return (
+    <>
+      <div className= "viewerContainer" style={{
+        position: 'relative',
+        overflow: 'hidden',                
+        }}
+        ref={ref}
+        onDoubleClick={ifcOnClick}
+        onContextMenu={ifcOnRightClick}
+        onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
+      />
+      <StatusPopover
+        id={id}
+        open={open}
+        anchorElem={anchorElem}
+        onClose={handleClose}
+        curIfcRecords={curIfcRecords}
+        sendElementToTable={sendElementToTable}
+      />
+    </>
+  );
 });
 
 export {ViewerContainer}
