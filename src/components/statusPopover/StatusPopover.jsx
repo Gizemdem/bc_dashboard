@@ -42,38 +42,32 @@ const StatusPopover = (props) => {
         vertical: 'top',
         horizontal: 'right',
       }}
+      anchorPosition={{top:100, right:100}}      
     >
-      {/* <Grid  
-        container
-        component='dl'
-        spacing={2}
-        sx={{ p: 2 }}
-        > */}
-          <Grid className="topDiv">
-            {curIfcRecords && Object.keys(curIfcRecords).map((key) =>
-              curIfcRecords[key] &&
-              <>
-                <React.Fragment key={key}>
-                  <Typography  className="topTitle" component='dt' variant='body2'>{key}</Typography>
-                  <Typography sx={{ pb: 1 }} component='dd'>{curIfcRecords[key]}</Typography>                    
-                </React.Fragment>                        
-              </>
-            )}
-          </Grid>
-          <Grid  className="bottomDiv">                 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                label="Set Date"
-                value={date}
-                onChange={(newValue) => {
-                  handleSetDate(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-            <Button  className="button" onClick={sendElementToTable}>Confirm</Button>
-          </Grid> 
-      {/* </Grid> */}
+      <Grid className="topDiv">
+        {curIfcRecords && Object.keys(curIfcRecords).map((key) =>
+          curIfcRecords[key] &&
+          <>
+            <React.Fragment key={key}>
+              <Typography  className="topTitle" component='dt' variant='body2'>{key}</Typography>
+              <Typography sx={{ pb: 1 }} component='dd'>{curIfcRecords[key]}</Typography>                    
+            </React.Fragment>                        
+          </>
+        )}
+      </Grid>
+      <Grid  className="bottomDiv">                 
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="Set Date"
+            value={date}
+            onChange={(newValue) => {
+              handleSetDate(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
+        <Button  className="button" onClick={sendElementToTable}>Confirm</Button>
+      </Grid> 
     </Popover>
   )
 }

@@ -6,10 +6,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 const ElementTable = (props) => {
 
   const data = props.data;
+
+  const handleDelete = (id) =>{
+    data(data.filter((item) => item.id !== id));
+  }
   
   
   console.log(data);
@@ -25,6 +30,7 @@ const ElementTable = (props) => {
             <TableCell className="tableCell">Name</TableCell>
             <TableCell className="tableCell">Status</TableCell>
             <TableCell className="tableCell">Date</TableCell>
+            <TableCell className="tableCell">Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -35,6 +41,10 @@ const ElementTable = (props) => {
               <TableCell className="tableCell">{row['Name']}</TableCell>
               <TableCell className="tableCell">{"status"}</TableCell>
               <TableCell className="tableCell">{row['Date']}</TableCell>
+              <TableCell className="tableCell" > 
+                {/* needs an action */}
+                <DeleteOutlineOutlinedIcon />                
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -65,25 +65,23 @@ const ViewerContainer = forwardRef((props, ref) => {
   }
     
   return (
-    <>
-      <div className= "viewerContainer" style={{
-        position: 'relative',
-        overflow: 'hidden',                
-        }}
+    <div >
+      <div className= "viewerContainer" 
         ref={ref}
         onDoubleClick={ifcOnClick}
         onContextMenu={ifcOnRightClick}
         onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
       />
-      <StatusPopover
+      <StatusPopover 
         id={id}
         open={open}
         anchorElem={anchorElem}
         onClose={handleClose}
         curIfcRecords={curIfcRecords}
         sendElementToTable={sendElementToTable}
+        
       />
-    </>
+    </div>
   );
 });
 
