@@ -90,12 +90,12 @@ const Home = () => {
                     <Widget/>
                 </div>
                 <div className="commit-viewer-containers">
-                    <ViewerContainer 
+                    <ViewerContainer className="viewerContainer"
                         ref={ifcContainer}
                         viewer={viewer}
                         setSelectedData={{}} 
                     />
-                    <CommitContainer  />
+                    <CommitContainer className="commitContainer"  />
                 </div>
                 <div className="listContainer">
                     <div className="listTitle"> Project Collaboration</div>      

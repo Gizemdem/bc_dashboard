@@ -66,7 +66,7 @@ const ViewerContainer = forwardRef((props, ref) => {
     
   return (
     <div >
-      <div className= "viewerContainer" 
+      <div className= "viewerContainer"
         ref={ref}
         onDoubleClick={ifcOnClick}
         onContextMenu={ifcOnRightClick}

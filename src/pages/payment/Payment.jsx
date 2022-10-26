@@ -1,11 +1,14 @@
 
 import React from "react"
+import Navbar from "../../components/navbar/Navbar";
 import "./payment.scss"
 
 const Payment = ()=>{
     return(
-        <div>
-            test paymnet test
+        <div >
+            <Navbar/>
+
+
         </div>
     )
 }
