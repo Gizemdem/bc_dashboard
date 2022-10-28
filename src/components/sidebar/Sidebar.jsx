@@ -25,7 +25,9 @@ const Sidebar = (props) =>{
             <hr className="hr"/>
             <div className="center"> 
                 <ul>
-                    <p className="title">PROJECTS</p>
+                    <Link to="/projects" style = {{textDecoration:"none"}}>
+                        <p className="title">PROJECTS</p>
+                    </Link>
                     <li>
                         <FolderOpenIcon onClick={props.openDoc} className="icon" />
                         <span>Access</span>

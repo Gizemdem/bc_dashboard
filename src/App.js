@@ -4,6 +4,7 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Welcome from "./pages/welcome/Welcome";
 import Payment from "./pages/payment/Payment";
+import Projects from "./pages/projects/Projects";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Routes>
               <Route path="/" >
                   <Route index element = {<Home/>}/>
+                  <Route path="projects" element={<Projects/>}/>
                   <Route path="check" element = {<Check/>}/>
                   <Route path="welcome" element = {<Welcome/>}/>
                   <Route path="register" element = {<Register/>}/>
