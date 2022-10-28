@@ -8,13 +8,19 @@
     // border-spacing: 70px;
     padding: 50px;
     // margin-right: 50px;
-
+    .titleTop{
+        font-size: 15px;
+            // font-weight: bold;
+            color: #999;
+            margin:20px;
+            margin-bottom: 5px;
+    }
     .topDiv{
         display: flex;
         flex-direction: column;
         // align-items: center;
         justify-content: center;
-        margin: 20px;
+        margin-left: 20px;
         .topTitle{            
             font-size: 15px;
             // font-weight: bold;
@@ -27,8 +33,20 @@
     .bottomDiv{
         display: flex;        
         flex-direction: column;
-        margin-top: 20px;
+        margin-top: 10px;
         margin: 15px;
+
+        .bottomTitle{
+            font-size: 15px;
+            // font-weight: bold;
+            color: #999;
+            margin-bottom: 25px;   
+
+        }
+        .bottomItems{
+            margin: 10px;
+            margin-top: 20px;
+        }
 
         .button{
             // width: 100%;

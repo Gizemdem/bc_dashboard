@@ -28,7 +28,7 @@ const ElementTable = (props) => {
             <TableCell className="tableCell">Type</TableCell>
             <TableCell className="tableCell">Global Id</TableCell>
             <TableCell className="tableCell">Name</TableCell>
-            <TableCell className="tableCell">Status</TableCell>
+            <TableCell className="tableCell">Progress Status</TableCell>
             <TableCell className="tableCell">Date</TableCell>
             <TableCell className="tableCell">Edit</TableCell>
           </TableRow>
@@ -39,7 +39,7 @@ const ElementTable = (props) => {
               <TableCell className="tableCell">{row['PredefinedType']}</TableCell>
               <TableCell className="tableCell">{row['GlobalId']}</TableCell>
               <TableCell className="tableCell">{row['Name']}</TableCell>
-              <TableCell className="tableCell">{"status"}</TableCell>
+              <TableCell className="tableCell">{row['Progress']}</TableCell>
               <TableCell className="tableCell">{row['Date']}</TableCell>
               <TableCell className="tableCell" > 
                 {/* needs an action */}
