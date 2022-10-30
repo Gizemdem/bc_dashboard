@@ -2,7 +2,7 @@ import "./check.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 
-import {Color} from "three";
+import {Color, MeshLambertMaterial} from "three";
 import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
 import React, { createRef, useState, useEffect } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
@@ -22,9 +22,26 @@ const Check = () => {
     const [selectedData, setSelectedData] = useState([]);
 
     const handleSaveData = (newElement) => {
-        setSelectedData( oldArray => [...oldArray, newElement] );
         
-        console.log(selectedData);
+        // To do: check if the new element already exists in the array
+        // For example: when changing the date a previous element
+        setSelectedData( oldArray => {
+            const elementIndex = oldArray.findIndex((elem) => elem.GlobalId === newElement.GlobalId);
+            console.log(elementIndex);
+            if (elementIndex !== -1) {
+                // updating to new element
+                oldArray[elementIndex] = newElement;
+
+                return [...oldArray];
+            }
+            else {
+                return [...oldArray, newElement];
+                // oldArray.append(newElement);
+                // return oldArray;
+            }            
+        } );
+        
+        // console.log(selectedData);
     }
 
 
@@ -75,6 +92,42 @@ const Check = () => {
           }
         }
       };
+
+    const changeColor = (id) => {
+        // access the model and change color according to status
+        console.log(id);
+        const color = new Color(1.0, 0.0, 0.0);
+        // const id = '22620';
+        const modelId = 0;
+
+        console.log("Changing color");
+
+        // Creates subset material
+        const mat = new MeshLambertMaterial({
+            transparent: true,
+            opacity: 0.6,
+            color: color,
+            depthTest: true,
+        })
+        console.log(viewer);
+        const scene = viewer.context.getScene();
+        console.log(scene);
+
+        // Creates subset
+        const result = viewer.IFC.loader.ifcManager.createSubset({
+            modelID: modelId,
+            ids: [id],
+            material: mat,
+            scene: scene,
+            removePrevious: false
+        });
+        console.log(result);
+        
+        scene.add(result);
+        
+        setViewer(viewer);
+
+    }
       
     return (
         <div className="check"> 
@@ -86,6 +139,7 @@ const Check = () => {
                         ref={ifcContainer}
                         viewer={viewer}
                         setSelectedData={handleSaveData}
+                        changeColor={changeColor}
                     />
                 </div>
                 <div className="listContainer">

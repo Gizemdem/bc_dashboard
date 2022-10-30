@@ -35,7 +35,7 @@ const ElementTable = (props) => {
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <TableRow key={row.id}>
+            <TableRow key={row['GlobalId']}>
               <TableCell className="tableCell">{row['PredefinedType']}</TableCell>
               <TableCell className="tableCell">{row['GlobalId']}</TableCell>
               <TableCell className="tableCell">{row['Name']}</TableCell>

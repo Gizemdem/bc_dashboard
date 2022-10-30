@@ -1,8 +1,10 @@
 import "./viewerContainer.scss";
 import React, { useState, forwardRef } from "react";
+import {Color, MeshLambertMaterial} from "three";
 
 import { IFCViewerAPI } from "web-ifc-viewer";
 import { StatusPopover } from "../statusPopover/StatusPopover";
+import { ViewDayRounded } from "@mui/icons-material";
 
 
 
@@ -10,7 +12,12 @@ const ViewerContainer = forwardRef((props, ref) => {
 
   const [anchorElem, setAnchorElem] = useState(null);
   const [curIfcRecords, setIfcRecords] = useState();
-  
+
+  // Callback from Check page to change colors in the scene
+  const changeColor = props.changeColor;
+
+  // save selected id, to send to change color
+  const [selected, setSelected] = useState();
 
   const viewer = props.viewer;
   const open = Boolean(anchorElem);
@@ -22,16 +29,17 @@ const ViewerContainer = forwardRef((props, ref) => {
   };
 
 
-  const sendElementToTable = () => {
-    setSelectedData(curIfcRecords);
+  const sendElementToTable = (newElement) => {
+    setSelectedData(newElement);
   }
 
   const ifcOnClick = async (event) => {
     if (viewer) {
         const result = await viewer.IFC.pickIfcItem(true);
         if (result) {
+          setSelected(result);
           const props = await viewer.IFC.getProperties(result.modelID, result.id, false);
-          // console.log(props);
+          // console.log(selected);
           const type = await viewer.IFC.loader.ifcManager.getIfcType(result.modelID, result.id);
           // convert props to record
           if (props) {
@@ -56,6 +64,10 @@ const ViewerContainer = forwardRef((props, ref) => {
     }
   };
 
+  const updateColors = () => {
+    changeColor(selected.id);
+  }
+
   // Create clipping plane
   const ifcOnRightClick = async () => {
     if (viewer) {
@@ -79,7 +91,7 @@ const ViewerContainer = forwardRef((props, ref) => {
         onClose={handleClose}
         curIfcRecords={curIfcRecords}
         sendElementToTable={sendElementToTable}
-        
+        updateColors={updateColors}
       />
     </div>
   );

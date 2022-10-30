@@ -23,27 +23,25 @@ const StatusPopover = (props) => {
   const handleClose = props.onClose;
   const curIfcRecords = props.curIfcRecords;
   const sendElementToTable = props.sendElementToTable;
+
+  // callback to viewer container to update colors
+  const updateColors = props.updateColors;
+
   //set date properties
   const [date, setDate] = React.useState();
-  const handleSetDate=(newValue)=>{
-    if (newValue !== null){ 
-        if (curIfcRecords){
-          curIfcRecords["Date"]=newValue.format("DD.MMM.YY");
-        }
-        setDate(newValue);
+  const handleSetDate=(dateValue)=>{
+    if (dateValue !== null) { 
+    setDate(dateValue);
     }
-    // console.log(newValue.format("DD.MMM.YY"))
-    // console.log(curIfcRecords)
   }
 
   //set progress status properties
   const [progresStatus, setProgresStatus] = React.useState('');
-  const handleChange = (event) => {
-    if (curIfcRecords){
-      curIfcRecords["Progress"]=event.target.value;
-    }
+  const handleChangeStatus = (event) => {
     setProgresStatus(event.target.value);
   };
+    
+
 
   return (
     <Popover className="statusPopover" 
@@ -81,7 +79,7 @@ const StatusPopover = (props) => {
               value={progresStatus}
               label="Progress"
               onChange={(event) => {
-                handleChange(event);
+                handleChangeStatus(event);
               }}
             >
               <MenuItem value={"On Process"}>On Process</MenuItem>
@@ -103,7 +101,16 @@ const StatusPopover = (props) => {
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
-        <Button  className="button" onClick={sendElementToTable}>Confirm</Button>
+        <Button  className="button" onClick={()=>{
+          // We create a new copy of the ifc element with date and progress before sending 
+          let newElement = {...curIfcRecords};
+          newElement["Date"] = date.format("DD.MMM.YY");
+          newElement["Progress"] = progresStatus;
+          sendElementToTable(newElement); 
+          updateColors(); 
+          handleClose()
+        }}
+        >Confirm</Button>
       </Grid> 
     </Popover>
   )
