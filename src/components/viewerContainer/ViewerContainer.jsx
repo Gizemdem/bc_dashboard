@@ -9,8 +9,8 @@ import { ViewDayRounded } from "@mui/icons-material";
 
 
 const ViewerContainer = forwardRef((props, ref) => {
-
-  const [anchorElem, setAnchorElem] = useState(null);
+  
+  const [anchorElem, setAnchorElem] = useState();
   const [curIfcRecords, setIfcRecords] = useState();
 
   // Callback from Check page to change colors in the scene
@@ -64,8 +64,10 @@ const ViewerContainer = forwardRef((props, ref) => {
     }
   };
 
-  const updateColors = () => {
-    changeColor(selected.id);
+  const updateColors = (status) => {
+    // we pass status to know which color to apply on the element
+    // status is one of "On progress" , "Payed" ..
+    changeColor(selected.id, status);
   }
 
   // Create clipping plane
@@ -87,7 +89,7 @@ const ViewerContainer = forwardRef((props, ref) => {
       <StatusPopover 
         id={id}
         open={open}
-        anchorElem={anchorElem}
+        anchorEl={anchorElem}
         onClose={handleClose}
         curIfcRecords={curIfcRecords}
         sendElementToTable={sendElementToTable}

@@ -18,6 +18,16 @@ const Check = () => {
     const [ifcLoadingErrorMessage, setIfcLoadingErrorMessage] = useState();
 
     
+    window.onkeydown = (event) => {
+        if(event.code === 'Escape') {
+            
+            viewer.IFC.selector.unpickIfcItems();
+            viewer.IFC.selector.unHighlightIfcItems();
+        }
+    }
+
+    
+    
     // List of selected elements
     const [selectedData, setSelectedData] = useState([]);
 
@@ -27,7 +37,6 @@ const Check = () => {
         // For example: when changing the date a previous element
         setSelectedData( oldArray => {
             const elementIndex = oldArray.findIndex((elem) => elem.GlobalId === newElement.GlobalId);
-            console.log(elementIndex);
             if (elementIndex !== -1) {
                 // updating to new element
                 oldArray[elementIndex] = newElement;
@@ -36,12 +45,8 @@ const Check = () => {
             }
             else {
                 return [...oldArray, newElement];
-                // oldArray.append(newElement);
-                // return oldArray;
             }            
         } );
-        
-        // console.log(selectedData);
     }
 
 
@@ -93,14 +98,29 @@ const Check = () => {
         }
       };
 
-    const changeColor = (id) => {
+    const changeColor = (id, status) => {
         // access the model and change color according to status
-        console.log(id);
-        const color = new Color(1.0, 0.0, 0.0);
-        // const id = '22620';
-        const modelId = 0;
-
         console.log("Changing color");
+        console.log(status);
+        let color = new Color(0.0 ,0.0 ,0.0);
+        
+        if (status ==="On Process") {
+            color = new Color(1.0, 0.0, 0.0);
+        }
+        else if(status === "Completed"){
+            color = new Color(0.0, 1.0, 0.0);
+        }
+        else if(status === "On Inspection"){
+            color = new Color(0.0, 0.0, 1.0);
+        }
+        else if(status === "Payed"){
+            color = new Color(0.5, 0.5, 0.0);
+        }
+        
+        // ToDo! this only works if there is only one ifc model
+        const modelId = 0;
+        
+        viewer.IFC.loader.ifcManager.removeSubset(modelId, undefined);
 
         // Creates subset material
         const mat = new MeshLambertMaterial({
@@ -109,9 +129,9 @@ const Check = () => {
             color: color,
             depthTest: true,
         })
-        console.log(viewer);
+        // console.log(viewer);
         const scene = viewer.context.getScene();
-        console.log(scene);
+        // console.log(scene);
 
         // Creates subset
         const result = viewer.IFC.loader.ifcManager.createSubset({
@@ -121,7 +141,7 @@ const Check = () => {
             scene: scene,
             removePrevious: false
         });
-        console.log(result);
+        // console.log(result);
         
         scene.add(result);
         

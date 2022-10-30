@@ -19,7 +19,7 @@ const StatusPopover = (props) => {
 
   const id = props.id;
   const open = props.open;
-  const anchorElem = props.anchorElem;
+  const anchorElem = props.anchorEl;
   const handleClose = props.onClose;
   const curIfcRecords = props.curIfcRecords;
   const sendElementToTable = props.sendElementToTable;
@@ -53,7 +53,7 @@ const StatusPopover = (props) => {
         vertical: 'top',
         horizontal: 'right',
       }}
-      anchorPosition={{top:100, right:100}}      
+      // anchorPosition={{top:100, right:100}}      
     > 
       <p className="titleTop">PROPERTIES</p> 	
       <Grid className="topDiv">
@@ -82,10 +82,10 @@ const StatusPopover = (props) => {
                 handleChangeStatus(event);
               }}
             >
-              <MenuItem value={"On Process"}>On Process</MenuItem>
-              <MenuItem value={"Completed"}>Completed</MenuItem>
-              <MenuItem value={"On Inspection"}>On Inspection</MenuItem>
-              <MenuItem value={"Payed"}>Payed</MenuItem>
+              <MenuItem key="process" value={"On Process"}>On Process</MenuItem>
+              <MenuItem key="completed" value={"Completed"}>Completed</MenuItem>
+              <MenuItem key="onInspection" value={"On Inspection"}>On Inspection</MenuItem>
+              <MenuItem key="payed" value={"Payed"}>Payed</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -107,7 +107,7 @@ const StatusPopover = (props) => {
           newElement["Date"] = date.format("DD.MMM.YY");
           newElement["Progress"] = progresStatus;
           sendElementToTable(newElement); 
-          updateColors(); 
+          updateColors(progresStatus); 
           handleClose()
         }}
         >Confirm</Button>

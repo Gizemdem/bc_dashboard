@@ -48,9 +48,7 @@ const Sidebar = (props) =>{
                         <span>Dashboard</span>
                     </li>
                     <li>
-                        <CropIcon onCLick={
-                            console.log("cropactivated")
-                        } className="icon"/>
+                        <CropIcon className="icon"/>
                         <span>Crop</span>
                     </li>
                     <Link to="/payment" style={{textDecoration:"none"}}>
