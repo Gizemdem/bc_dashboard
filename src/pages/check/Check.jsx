@@ -84,7 +84,7 @@ const Check = () => {
     };
     const ifcOnLoadError = async (err) => {
         setIfcLoadingErrorMessage(err.toString());
-      };
+    };
 
     const toggleClippingPlanes = async () => {
         console.log("clippingplane is loading");
@@ -105,16 +105,16 @@ const Check = () => {
         let color = new Color(0.0 ,0.0 ,0.0);
         
         if (status ==="On Process") {
-            color = new Color(1.0, 0.0, 0.0);
+            color = new Color('#ffdfad');
         }
         else if(status === "Completed"){
-            color = new Color(0.0, 1.0, 0.0);
+            color = new Color('#f16f70');
         }
         else if(status === "On Inspection"){
-            color = new Color(0.0, 0.0, 1.0);
+            color = new Color('#679b9c');
         }
         else if(status === "Payed"){
-            color = new Color(0.5, 0.5, 0.0);
+            color = new Color('#6887c5');
         }
         
         // ToDo! this only works if there is only one ifc model
