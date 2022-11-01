@@ -61,7 +61,7 @@ const StatusPopover = (props) => {
           curIfcRecords[key] &&
           <>            
             <React.Fragment key={key}>
-              <Typography  className="topTitle" component='dt' variant='body2'>{key}</Typography>
+              <Typography  className="topTitle" component='dt' variant='body2' >{key}</Typography>
               <Typography sx={{ pb: 1 }} component='dd'>{curIfcRecords[key]}</Typography>                    
             </React.Fragment>                        
           </>

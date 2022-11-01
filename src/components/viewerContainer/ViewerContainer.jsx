@@ -79,7 +79,7 @@ const ViewerContainer = forwardRef((props, ref) => {
   }
     
   return (
-    <div >
+    < >
       <div className= "viewerContainer"
         ref={ref}
         onDoubleClick={ifcOnClick}
@@ -95,7 +95,7 @@ const ViewerContainer = forwardRef((props, ref) => {
         sendElementToTable={sendElementToTable}
         updateColors={updateColors}
       />
-    </div>
+    </>
   );
 });
 

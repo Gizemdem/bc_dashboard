@@ -37,10 +37,15 @@ const Home = () => {
                 USE_FAST_BOOLS: false,
                 });
             setViewer(ifcViewer);
+            ifcViewer.IFC.loadIfcUrl("../../01.ifc");
         }
+
+        // ifcOnLoad().catch(console.log("Error"));
+        // console.log("Loaded");
     }, []);
 
     const ifcOnLoad = async () => {
+        //linked github
         const file = "https://raw.githubusercontent.com/IFCjs/hello-world/main/IFC/01.ifc";
         if (file && viewer) {
 
@@ -95,7 +100,7 @@ const Home = () => {
                         viewer={viewer}
                         setSelectedData={{}} 
                     />
-                    <CommitContainer className="commitContainer"  />
+                    {/* <CommitContainer className="commitContainer"  /> */}
                 </div>
                 <div className="listContainer">
                     <div className="listTitle"> Project Collaboration</div>      
