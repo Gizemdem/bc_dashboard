@@ -8,6 +8,9 @@ import React, { createRef, useState, useEffect } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
 import ElementTable from "../../components/elementTable/ElementTable";
 
+import GetAppIcon from '@mui/icons-material/GetApp';
+import {utils, writeFileXLSX} from "xlsx";
+
 const Check = () => {
     const [isLoading, setLoading] = useState(false);
     const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);
@@ -154,6 +157,18 @@ const Check = () => {
         setViewer(viewer);
 
     }
+
+    // export excel 
+    const exportExcel= ()=>{
+        var wb = utils.book_new(),
+        ws = utils.json_to_sheet(selectedData);
+        utils.book_append_sheet(wb,ws, "Sheet1");
+        //  get current date
+        const current = new Date();
+        const date = `${current.getDate()}.${current.getMonth()+1}.${current.getFullYear()}`;
+        let fileName = `BIMDatabase_${date}.xlsx`
+        writeFileXLSX(wb, fileName);
+    }
       
     return (
         <div className="check"> 
@@ -169,7 +184,10 @@ const Check = () => {
                     />
                 </div>
                 <div className="listContainer">
-                    <div className="listTitle"> Project Database</div>      
+                    <div className="listTitle"> 
+                        <p>Project Database</p>
+                        <GetAppIcon onClick={exportExcel}/>
+                    </div>      
                     <ElementTable data={selectedData}/>
                 </div> 
             </div> 

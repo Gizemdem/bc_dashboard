@@ -20,11 +20,21 @@
             border-radius: 10px;
             padding: 20px;
             margin: 20px;
-        }
-        .listTitle {
-            font-weight: 500;
-            color: gray;
-            margin-bottom: 15px;
-          }
+            
+            .listTitle {
+                font-weight: 500;
+                color: gray;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;                
+            }
+            .icon{
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+                position: relative;
+            }
+        }        
     }
 }
