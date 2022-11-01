@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 const Projects= () => {
 
     //project list path
-    const projectFiles= ["../../01.ifc", "../../room.blend.ifc","../../01.ifc", "../../room.blend.ifc"]
+    const projectFiles= ["../../IFCprojects/01.ifc", "../../IFCprojects/room.blend.ifc","../../IFCprojects/01.ifc", "../../IFCprojects/room.blend.ifc"];
     
     return(
         <div className="projects">
