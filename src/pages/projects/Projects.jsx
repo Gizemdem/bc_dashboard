@@ -3,12 +3,13 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./projects.scss";
 import ProjectFolder from "../../components/projectFolder/ProjectFolder";
+import {Link} from "react-router-dom";
 
 const Projects= () => {
-    //in future this will trigger the project url
-    const openProject=()=>{
-        console.log("clicks works")
-    }
+
+    //project list path
+    const projectFiles= ["../../01.ifc", "../../room.blend.ifc","../../01.ifc", "../../room.blend.ifc"]
+    
     return(
         <div className="projects">
             <Sidebar/>
@@ -17,10 +18,10 @@ const Projects= () => {
                 <div className="folderContainer">
                     <span className="title">PROJECTS</span>
                     <div className="folderComponent">
-                    <ProjectFolder img="folder_icon.png" openProject={openProject} projectName="Test Project 1"/>
-                    <ProjectFolder img="folder_icon.png" projectName="Test Project 2"/>
-                    <ProjectFolder img="folder_icon.png" projectName="Test Project 3"/>
-                    <ProjectFolder img="add_folder_icon.png" projectName="Test Project 4"/>
+                    <ProjectFolder img="folder_icon.png" path={projectFiles[0]} projectName="Test Project 1"/>
+                    <ProjectFolder img="folder_icon.png" path={projectFiles[1]} projectName="Test Project 2"/>
+                    <ProjectFolder img="folder_icon.png" path={projectFiles[2]} projectName="Test Project 3"/>
+                    <ProjectFolder img="add_folder_icon.png" path={projectFiles[3]} projectName="Test Project 4"/>
                     </div>
                 </div>                
             </div>

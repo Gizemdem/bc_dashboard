@@ -62,6 +62,12 @@ const Check = () => {
                 USE_FAST_BOOLS: false,
                 });
             setViewer(ifcViewer);
+            
+            // getting the path from local storage, project files are in Project Page
+            let path = localStorage.getItem("projectPath");
+            if (path !== "" ){
+                ifcViewer.IFC.loadIfcUrl(localStorage.getItem("projectPath"));
+            } 
         }
     }, [ifcContainer.current]);
 
@@ -163,7 +169,7 @@ const Check = () => {
                     />
                 </div>
                 <div className="listContainer">
-                    <div className="listTitle"> Project Collaboration</div>      
+                    <div className="listTitle"> Project Database</div>      
                     <ElementTable data={selectedData}/>
                 </div> 
             </div> 

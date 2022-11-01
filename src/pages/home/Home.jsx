@@ -37,7 +37,12 @@ const Home = () => {
                 USE_FAST_BOOLS: false,
                 });
             setViewer(ifcViewer);
-            ifcViewer.IFC.loadIfcUrl("../../01.ifc");
+
+            // getting the path from local storage, project files are in Project Page
+            let path = localStorage.getItem("projectPath");
+            if (path !== "" ){
+                ifcViewer.IFC.loadIfcUrl(localStorage.getItem("projectPath"));
+            }          
         }
 
         // ifcOnLoad().catch(console.log("Error"));

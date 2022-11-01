@@ -1,14 +1,24 @@
 import "./projectFolder.scss"
 import React from "react"
+import {Link} from "react-router-dom"
+
 
 const ProjectFolder=(props)=>{
 
     return (  
         <div className="folder">
-            <img src={`../images/${props.img}`} className="folderImg" onClick={props.openProject}/>                    
-            <p className="projectTitle">{props.projectName}</p>            
+            <Link to="/" style= {{textDecoration:"none"}} >
+                <img 
+                src={`../images/${props.img}`} className="folderImg" 
+                onClick={()=>{
+                    localStorage.setItem("projectPath", props.path)
+                }}
+                />                    
+                <p className="projectTitle">{props.projectName}</p>   
+            </Link>         
         </div>
         
     )
 }
 export default ProjectFolder;
+
