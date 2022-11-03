@@ -7,12 +7,12 @@
     .folderImg{
         width: 100%;
         border-radius: 9px;
-        padding: 10px;
+        padding: 5px;
         margin-bottom: 9px;
         color: gray;
         cursor: pointer;
         &:hover{
-            background-color: #7a72a13f;
+            background-color: #7a72a112;
         }
     }
     p{
@@ -22,6 +22,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: -10px;
     
     }
 }
