@@ -3,7 +3,7 @@ import Sidebar  from "../../components/sidebar/Sidebar" ;
 import Navbar from "../../components/navbar/Navbar";
 import Widget from "../../components/widget/Widget";
 
-import CommitContainer from "../../components/commitContainer/CommitContainer"
+// import CommitContainer from "../../components/commitContainer/CommitContainer"
 
 import TopWidget from "../../components/topWidget/TopWidget"
 
@@ -81,9 +81,6 @@ const Home = () => {
           }
         }
       };
-
-    
-
     //   ifcOnLoad();
     return (
         <div className="home"> 
