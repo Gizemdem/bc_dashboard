@@ -1,4 +1,4 @@
-import "./check.scss"
+import "./dashboard.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 
@@ -11,7 +11,7 @@ import ElementTable from "../../components/elementTable/ElementTable";
 import GetAppIcon from '@mui/icons-material/GetApp';
 import {utils, writeFileXLSX} from "xlsx";
 
-const Check = () => {
+const Dashboard = () => {
     const [isLoading, setLoading] = useState(false);
     const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
@@ -171,7 +171,7 @@ const Check = () => {
     }
       
     return (
-        <div className="check"> 
+        <div className="dashboard"> 
             <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes} />
             <div className="container" > 
                 <Navbar/>
@@ -196,4 +196,4 @@ const Check = () => {
     )
 }
 
-export default Check
+export default Dashboard

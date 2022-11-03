@@ -34,29 +34,29 @@ const Sidebar = (props) =>{
                     </li>
                     <li>
                         <GroupsOutlinedIcon className="icon"/>
-                        <span>Collaboration</span>
+                        <span>Collaborators</span>
                     </li>
-                    <Link to ="/check" style= {{textDecoration:"none"}}>
+                    <Link to ="/dashboard" style= {{textDecoration:"none"}}>
                         <p className="title">DASHBOARD</p>
                     </Link>
                     <li>
                         <PageviewOutlinedIcon className="icon"/>
-                        <span>Check</span>
-                    </li>
-                    <li>
-                        <DashboardOutlinedIcon className="icon"/>
-                        <span>Dashboard</span>
+                        <span>Model Viewer</span>
                     </li>
                     <li>
                         <CropIcon className="icon"/>
-                        <span>Crop</span>
+                        <span>Clipping Plane</span>
                     </li>
-                    <Link to="/payment" style={{textDecoration:"none"}}>
-                    <p className="title">CONFIRM</p>
+                    <li>
+                        <DashboardOutlinedIcon className="icon"/>
+                        <span>Element Database</span>
+                    </li>
+                    <Link to="/account" style={{textDecoration:"none"}}>
+                    <p className="title">ACCOUNTING</p>
                     </Link>
                     <li>                        
                         <AccountBalanceWalletOutlinedIcon onClick={ConnectWallet} className="icon" />
-                        <span>Wallet</span>
+                        <span>Payment</span>
                     </li>
                     <p className="title">USER</p>
                     <li>

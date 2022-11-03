@@ -1,11 +1,12 @@
 import Home from "./pages/home/Home";
-import Check from "./pages/check/Check";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Welcome from "./pages/welcome/Welcome";
-import Payment from "./pages/payment/Payment";
+import Account from "./pages/account/Account";
 import Projects from "./pages/projects/Projects";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 
 function App() {
     
@@ -16,11 +17,11 @@ function App() {
               <Route path="/" >
                   <Route index element = {<Home/>}/>
                   <Route path="projects" element={<Projects/>}/>
-                  <Route path="check" element = {<Check/>}/>
+                  <Route path="dashboard" element = {<Dashboard/>}/>
                   <Route path="welcome" element = {<Welcome/>}/>
                   <Route path="register" element = {<Register/>}/>
                   <Route path="login" element = {<Login/>}/>
-                  <Route path="payment" element= {<Payment/>}/>
+                  <Route path="account" element= {<Account/>}/>
               </Route>
           </Routes>
         </BrowserRouter>
