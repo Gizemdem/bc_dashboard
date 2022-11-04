@@ -173,7 +173,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard"> 
             <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes} />
-            <div className="container" > 
+            <div className="homeContainer" > 
                 <Navbar/>
                 <div >
                     <ViewerContainer className="viewerContainer"
