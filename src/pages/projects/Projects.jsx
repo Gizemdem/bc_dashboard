@@ -11,7 +11,7 @@ import {readFile, utils, writeFile} from "xlsx"
 const Projects= () => {
 
     // project list path
-    const projectFiles= ["./IFCprojects/01.ifc", "./IFCprojects/BuroHalle_Einbauteile.ifc","./IFCprojects/GB_City.ifc", "./IFCprojects/room.blend.ifc"];
+    const projectFiles= ["/IFCprojects/01.ifc", "/IFCprojects/BuroHalle_Einbauteile.ifc","/IFCprojects/GB_City.ifc", "/IFCprojects/room.blend.ifc"];
     
     // excel file upload
     const uploadExcelFile = (e) => {
@@ -45,10 +45,10 @@ const Projects= () => {
                     <span className="title">PROJECTS</span>
                     <div className="folderComponent">
                         
-                        <ProjectFolder img={"./folder_icon.png"} path={projectFiles[0]} projectName="Test Project 01"/>
-                        <ProjectFolder img={"./folder_icon.png"} path={projectFiles[1]} projectName="Bauteile Halle"/>
-                        <ProjectFolder img={"./folder_icon.png"} path={projectFiles[2]} projectName="GB City"/>
-                        <ProjectFolder img={"./add_folder_icon.png"} path={projectFiles[3]} projectName="Test Project 4"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[0]} projectName="Test Project 01"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[1]} projectName="Bauteile Halle"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[2]} projectName="GB City"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL +"/add_folder_icon.png"} path={projectFiles[3]} projectName="Test Project 4"/>
                     </div>
                 </div> 
                 <div className="collaboratorContainer">

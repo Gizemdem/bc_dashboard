@@ -9,7 +9,7 @@ const ProjectFolder=(props)=>{
         <div className="folder">
             <Link to="/" style= {{textDecoration:"none"}} >
                 <img src={props.img} className="folderImg" 
-                onClick={()=>{localStorage.setItem("projectPath", props.path)}}
+                onClick={()=>{localStorage.setItem("projectPath", process.env.PUBLIC_URL+props.path)}}
                 alt=""
                 />                    
                 <p className="projectTitle">{props.projectName}</p>   
