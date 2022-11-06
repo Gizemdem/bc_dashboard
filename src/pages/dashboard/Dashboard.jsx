@@ -91,7 +91,9 @@ const Dashboard = () => {
 
             // update information
             setSnackbarOpen(true);
-            setLoading(false)
+            setLoading(false);
+            setViewer(viewer);
+
         }
     };
     const ifcOnLoadError = async (err) => {
@@ -197,7 +199,7 @@ const Dashboard = () => {
     //button onClick AR
     const exportScene =()=>{
         if (viewer){
-            // console.log(viewer.IFC.context.scene.scene)
+            console.log(viewer.IFC.context.scene.scene)
             exportGLTF(viewer.IFC.context.scene.scene)
         }
     } 
