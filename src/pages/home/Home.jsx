@@ -15,6 +15,8 @@ import React, { createRef, useState, useEffect } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
 
 
+import { ConstructionOutlined } from "@mui/icons-material";
+
 const Home = () => {
 
     const [isLoading, setLoading] = useState(false);
@@ -24,6 +26,7 @@ const Home = () => {
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
     const [ifcLoadingErrorMessage, setIfcLoadingErrorMessage] = useState();
+
 
     useEffect(() => {
         if (ifcContainer.current) {
@@ -82,6 +85,7 @@ const Home = () => {
         }
       };
     //   ifcOnLoad();
+
     return (
         <div className="home"> 
             <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes}/>
@@ -103,6 +107,7 @@ const Home = () => {
                         setSelectedData={{}} 
                     />
                     {/* <CommitContainer className="commitContainer"  /> */}
+                    
                 </div>
                 <div className="listContainer">
                     <div className="listTitle"> Project Collaboration</div>      

@@ -11,6 +11,9 @@ import ElementTable from "../../components/elementTable/ElementTable";
 import GetAppIcon from '@mui/icons-material/GetApp';
 import {utils, writeFileXLSX} from "xlsx";
 
+import {GLTFExporter} from "three/examples/jsm/exporters/GLTFExporter";
+import "@google/model-viewer/dist/model-viewer";
+
 const Dashboard = () => {
     const [isLoading, setLoading] = useState(false);
     const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);
@@ -169,6 +172,50 @@ const Dashboard = () => {
         let fileName = `BIMDatabase_${date}.xlsx`
         writeFileXLSX(wb, fileName);
     }
+
+    //
+    //IFC -- GLB
+    //
+    const exportGLTF=(input)=>{
+        const gltfexporter= new GLTFExporter();
+        const options = {
+            trs: false,
+            onlyVisible:true,
+            binary:true,
+            maxTextureSize:4096
+        }
+        gltfexporter.parse(
+            input, 
+            (result)=>{if (result instanceof ArrayBuffer){
+                //save buffer to state
+                save(new Blob( [result], {type:"application/octet-stream"}), "test.glb")
+            }},
+            (error)=>{console.log(error)},
+            options
+        )
+    }
+    //button onClick AR
+    const exportScene =()=>{
+        if (viewer){
+            // console.log(viewer.IFC.context.scene.scene)
+            exportGLTF(viewer.IFC.context.scene.scene)
+        }
+    } 
+    //create a link and download
+    const link = document.createElement('a');
+    link.style.display="none";
+    const save=(blob, filename)=>{
+        link.href=URL.createObjectURL(blob);
+        console.log(link)
+        // link.download = filename;
+        // link.click();
+        setModelURL(link.href);
+    }
+    const [modelURL, setModelURL] = useState("");
+    
+    //
+    //IFC -- GLB
+    //
       
     return (
         <div className="dashboard"> 
@@ -190,6 +237,10 @@ const Dashboard = () => {
                     </div>      
                     <ElementTable data={selectedData}/>
                 </div> 
+                <div className="arContainer">
+                    <model-viewer src={modelURL} alt="" camera-controls ar > </model-viewer>
+                    <button className="formButton" onClick={exportScene}> AR</button>
+                </div>
             </div> 
          
         </div>
