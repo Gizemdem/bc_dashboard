@@ -44,10 +44,10 @@ const Projects= () => {
                 <div className="folderContainer">
                     <span className="title">PROJECTS</span>
                     <div className="folderComponent">
-                        <ProjectFolder img="folder_icon.png" path={projectFiles[0]} projectName="Test Project 01"/>
-                        <ProjectFolder img="folder_icon.png" path={projectFiles[1]} projectName="Bauteile Halle"/>
-                        <ProjectFolder img="folder_icon.png" path={projectFiles[2]} projectName="GB City"/>
-                        <ProjectFolder img="add_folder_icon.png" path={projectFiles[3]} projectName="Test Project 4"/>
+                        <ProjectFolder img="../../images/folder_icon.png" path={projectFiles[0]} projectName="Test Project 01"/>
+                        <ProjectFolder img="../../images/folder_icon.png" path={projectFiles[1]} projectName="Bauteile Halle"/>
+                        <ProjectFolder img="../../images/folder_icon.png" path={projectFiles[2]} projectName="GB City"/>
+                        <ProjectFolder img="../../images/add_folder_icon.png" path={projectFiles[3]} projectName="Test Project 4"/>
                     </div>
                 </div> 
                 <div className="collaboratorContainer">

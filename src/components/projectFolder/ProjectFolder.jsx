@@ -8,7 +8,7 @@ const ProjectFolder=(props)=>{
     return (  
         <div className="folder">
             <Link to="/" style= {{textDecoration:"none"}} >
-                <img src={`../images/${props.img}`} className="folderImg" 
+                <img src={props.img} className="folderImg" 
                 onClick={()=>{localStorage.setItem("projectPath", props.path)}}
                 alt=""
                 />                    

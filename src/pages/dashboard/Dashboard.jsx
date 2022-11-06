@@ -238,7 +238,7 @@ const Dashboard = () => {
                     <ElementTable data={selectedData}/>
                 </div> 
                 <div className="arContainer">
-                    <model-viewer src={modelURL} alt="" camera-controls ar > </model-viewer>
+                    <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" > </model-viewer>
                     <button className="formButton" onClick={exportScene}> AR</button>
                 </div>
             </div> 
