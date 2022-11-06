@@ -11,7 +11,7 @@ import {readFile, utils, writeFile} from "xlsx"
 const Projects= () => {
 
     // project list path
-    const projectFiles= ["../../IFCprojects/01.ifc", "../../IFCprojects/BuroHalle_Einbauteile.ifc","../../IFCprojects/GB_City.ifc", "../../IFCprojects/room.blend.ifc"];
+    const projectFiles= ["./IFCprojects/01.ifc", "./IFCprojects/BuroHalle_Einbauteile.ifc","./IFCprojects/GB_City.ifc", "./IFCprojects/room.blend.ifc"];
     
     // excel file upload
     const uploadExcelFile = (e) => {
