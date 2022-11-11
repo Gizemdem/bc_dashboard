@@ -34,6 +34,13 @@ const StatusPopover = (props) => {
     setDate(dateValue);
     }
   }
+  //Estmated Time Construction
+  const [etcDate, setETCDate] = React.useState();
+  const handleSetETCDate=(dateValue)=>{
+    if (dateValue !== null) { 
+    setETCDate(dateValue);
+    }
+  }
 
   //set progress status properties
   const [progresStatus, setProgresStatus] = React.useState('');
@@ -70,7 +77,18 @@ const StatusPopover = (props) => {
       
       <Grid className="bottomDiv">  
         <p className="bottomTitle">SET PROPERTIES</p> 
-        <Box sx={{ minWidth: 120 }} marginBottom="20px">
+        <LocalizationProvider className="bottomItems" dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="ETC"
+            value={etcDate}
+            onChange={(newValue) => {
+              handleSetETCDate(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
+
+        <Box sx={{ minWidth: 120 }} marginBottom="20px" marginTop="20px">
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Progress</InputLabel>
             <Select
@@ -82,15 +100,17 @@ const StatusPopover = (props) => {
                 handleChangeStatus(event);
               }}
             >
-              <MenuItem key="process" value={"On Process"}>On Process</MenuItem>
-              <MenuItem key="completed" value={"Completed"}>Completed</MenuItem>
-              <MenuItem key="onInspection" value={"On Inspection"}>On Inspection</MenuItem>
+              <MenuItem key="assigned" value={"Assigned"}>Assigned</MenuItem>
+              <MenuItem key="doing" value={"Doing"}>Doing</MenuItem>
+              <MenuItem key="inspection" value={"Inspection"}>Inspection</MenuItem>
+              <MenuItem key="review" value={"Review"}>Review</MenuItem>
+              <MenuItem key="revision" value={"Revision"}>Revision</MenuItem>
+              <MenuItem key="done" value={"Done"}>Done</MenuItem>
               <MenuItem key="payed" value={"Payed"}>Payed</MenuItem>
             </Select>
           </FormControl>
         </Box>
 
-        {/* <DropdownStatus className="bottomItems"/> */}
         <LocalizationProvider className="bottomItems" dateAdapter={AdapterDayjs}>
           <DatePicker
             label="Set Date"
@@ -104,6 +124,7 @@ const StatusPopover = (props) => {
         <Button  className="button" onClick={()=>{
           // We create a new copy of the ifc element with date and progress before sending 
           let newElement = {...curIfcRecords};
+          newElement["ETC"]=etcDate.format("DD.MMM.YY");
           newElement["Date"] = date.format("DD.MMM.YY");
           newElement["Progress"] = progresStatus;
           sendElementToTable(newElement); 

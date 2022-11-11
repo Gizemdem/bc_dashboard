@@ -1,12 +1,11 @@
 import "./viewerContainer.scss";
 import React, { useState, forwardRef } from "react";
-import {Color, MeshLambertMaterial} from "three";
 
-import { IFCViewerAPI } from "web-ifc-viewer";
 import { StatusPopover } from "../statusPopover/StatusPopover";
-import { ViewDayRounded } from "@mui/icons-material";
-
-
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
 const ViewerContainer = forwardRef((props, ref) => {
   
@@ -28,7 +27,6 @@ const ViewerContainer = forwardRef((props, ref) => {
     setAnchorElem(null);
   };
 
-
   const sendElementToTable = (newElement) => {
     setSelectedData(newElement);
   }
@@ -48,18 +46,9 @@ const ViewerContainer = forwardRef((props, ref) => {
             ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
             ifcRecords['Name'] = props.Name && props.Name?.value;
             ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
-            // ifcRecords['PredefinedType'] = props.PredefinedType && props.PredefinedType?.value;
-            // ifcRecords['Date']="";
             setIfcRecords(ifcRecords);
-            
-            // let prev = selectedData;
-            // prev.push(ifcRecords);
-            
-            // console.log(selectedData)
-          }
-  
+          }  
           setAnchorElem(event.target);
-          // console.log(selectedData);
       }
     }
   };
@@ -77,7 +66,15 @@ const ViewerContainer = forwardRef((props, ref) => {
       viewer.clipper.createPlane();
     }
   }
-    
+  //palet for status popover
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+  
   return (
     < >
       <div className= "viewerContainer"
@@ -85,7 +82,12 @@ const ViewerContainer = forwardRef((props, ref) => {
         onDoubleClick={ifcOnClick}
         onContextMenu={ifcOnRightClick}
         onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
-      />
+      >
+        <Box sx={{ width: '100%' }}>
+          <Box></Box>
+          <Box></Box>
+        </Box>
+      </div>
       <StatusPopover 
         id={id}
         open={open}

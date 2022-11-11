@@ -118,17 +118,26 @@ const Dashboard = () => {
         console.log(status);
         let color = new Color(0.0 ,0.0 ,0.0);
         
-        if (status ==="On Process") {
+        if (status ==="Assigned") {
             color = new Color('#ffdfad');
         }
-        else if(status === "Completed"){
-            color = new Color('#f16f70');
+        else if(status === "Doing"){
+            color = new Color('#F8E220');
         }
-        else if(status === "On Inspection"){
-            color = new Color('#679b9c');
+        else if(status === "Inspection"){
+            color = new Color('#1DE02D');
+        }
+        else if(status === "Review"){
+            color = new Color('#2DC5F7');
+        }
+        else if(status === "Revision"){
+            color = new Color('#651DE0');
+        }
+        else if(status === "Done"){
+            color = new Color('#FF2F3D');
         }
         else if(status === "Payed"){
-            color = new Color('#6887c5');
+            color = new Color('#F88B75');
         }
         
         // ToDo! this only works if there is only one ifc model
@@ -242,6 +251,11 @@ const Dashboard = () => {
                 <div className="arContainer">
                     <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" > </model-viewer>
                     <button className="formButton" onClick={exportScene}> AR</button>
+                </div>
+                <div className="kanbanContainer">
+                    <h1>
+                        this is test for the kanban
+                    </h1>
                 </div>
             </div> 
          
