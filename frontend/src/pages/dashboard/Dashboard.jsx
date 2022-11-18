@@ -55,7 +55,6 @@ const Dashboard = () => {
         } );
     }
 
-
     useEffect(() => {
         if (ifcContainer.current) {
             const container = ifcContainer.current;
