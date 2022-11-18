@@ -42,7 +42,7 @@ const Sidebar = (props) =>{
                     </Link>
                     {/* dashboard */}
                     <Link to ="/dashboard" style= {{textDecoration:"none"}}>
-                        <p className="title">DASHBOARD</p>                    
+                        <p className="title">SITE INSPECTION</p>                    
                         <li>
                             <PageviewOutlinedIcon className="icon"/>
                             <span>Model Viewer</span>
