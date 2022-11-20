@@ -84,8 +84,6 @@ const ViewerContainer = forwardRef((props, ref) => {
         onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
       >
         <Box sx={{ width: '100%' }}>
-          <Box></Box>
-          <Box></Box>
         </Box>
       </div>
       <StatusPopover 

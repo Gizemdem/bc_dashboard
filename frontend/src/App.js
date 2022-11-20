@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import Welcome from "./pages/welcome/Welcome";
 import Account from "./pages/account/Account";
 import Projects from "./pages/projects/Projects";
+import Cost from "./pages/cost/Cost";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
 
@@ -23,6 +24,7 @@ function App() {
               <Route path="/register" element = {<Register/>}/>
               <Route path="/login" element = {<Login/>}/>
               <Route path="/account" element= {<Account/>}/>
+              <Route path="/cost" element={<Cost/>}/>
           </Routes>
         </HashRouter>
     </div>

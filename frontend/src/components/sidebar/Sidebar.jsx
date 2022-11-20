@@ -13,6 +13,7 @@ import ViewInArOutlinedIcon from '@mui/icons-material/ViewInArOutlined';
 import ViewKanbanOutlinedIcon from '@mui/icons-material/ViewKanbanOutlined';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 
 
 import {Link} from "react-router-dom";
@@ -38,6 +39,12 @@ const Sidebar = (props) =>{
                         <li>
                             <GroupsOutlinedIcon className="icon"/>
                             <span>Collaborators</span>
+                        </li>
+                    </Link>
+                    <Link to="/cost" style = {{textDecoration:"none"}}>
+                        <li>
+                            <PriceChangeOutlinedIcon className="icon"/>
+                            <span>Cost Management</span>
                         </li>
                     </Link>
                     {/* dashboard */}

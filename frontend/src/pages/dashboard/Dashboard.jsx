@@ -76,29 +76,6 @@ const Dashboard = () => {
         }
     }, [ifcContainer.current]);
 
-    const ifcOnLoad = async () => {
-        const file = "https://raw.githubusercontent.com/IFCjs/hello-world/main/IFC/01.ifc";
-        if (file && viewer) {
-
-            // reset
-            setIfcLoadingErrorMessage('');
-            setLoading(true);
-
-            // load file
-            const model = await viewer.IFC.loadIfcUrl(file);
-            await viewer.shadowDropper.renderShadow(model.modelID);
-
-            // update information
-            setSnackbarOpen(true);
-            setLoading(false);
-            setViewer(viewer);
-
-        }
-    };
-    const ifcOnLoadError = async (err) => {
-        setIfcLoadingErrorMessage(err.toString());
-    };
-
     const toggleClippingPlanes = async () => {
         console.log("clippingplane is loading");
         if (viewer) {
@@ -229,7 +206,7 @@ const Dashboard = () => {
       
     return (
         <div className="dashboard"> 
-            <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes} />
+            <Sidebar cropActivate={toggleClippingPlanes} />
             <div className="homeContainer" > 
                 <Navbar/>
                 <div >
