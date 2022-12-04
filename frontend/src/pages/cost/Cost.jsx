@@ -1,15 +1,17 @@
-
+import React, { createRef, useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./cost.scss";
 import CostTable from "./CostTable";
-
 import {Color, MeshLambertMaterial} from "three";
 import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
-import React, { createRef, useState, useEffect } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
-// import { load } from "../../contractFunctions";
 
+import {
+    progressPaymentContract,
+    connectWallet,
+    getCurrentWalletConnected,
+} from "../../util/interact.js";
 
 const Cost = ()=>{
 
@@ -20,6 +22,31 @@ const Cost = ()=>{
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
     const [ifcLoadingErrorMessage, setIfcLoadingErrorMessage] = useState();
+
+    //State variables for contract
+    const [walletAddress, setWallet] = useState("");
+    const [elements, setElements] = useState([]);
+    //called only once
+    useEffect(() => { //TODO: implement
+
+    }, []);
+
+    function addSmartContractListener() { //TODO: implement
+
+    }
+
+    function addWalletListener() { //TODO: implement
+
+    }
+
+    const connectWalletPressed = async () => {
+        const walletResponse = await connectWallet();
+        setWallet(walletResponse.address);
+    };
+
+    const onUpdatePressed = async () => { //TODO: implement
+
+    };
 
     useEffect(() => {
         // load();
@@ -145,6 +172,27 @@ const Cost = ()=>{
                     <div className="container">
                         <p>Cost Input</p>
                         <CostTable data={selectedData}/>
+                        <button id="walletButton" onClick={connectWalletPressed}>
+                            {walletAddress.length > 0 ? (
+                                "Connected: " +
+                                String(walletAddress).substring(0, 6) +
+                                "..." +
+                                String(walletAddress).substring(38)
+                            ) : (
+                                <span>Connect Wallet</span>
+                            )}
+                        </button>
+                    </div>
+                    <div>
+                        <input
+                        type="text"
+                        placeholder="Add elements and its cost in your smart contract."
+                        onChange={(e) => setElements(e.target.value)}
+                        value={elements}
+                        />
+                        <button id="publishButton" onClick={onUpdatePressed}>
+                        Update
+                        </button>
                     </div>
                 </div>
             </div>

@@ -3,39 +3,13 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./projects.scss";
 import ProjectFolder from "../../components/projectFolder/ProjectFolder";
-import ImportTable from "../../components/importTable/ImportTable";
 
-import {readFile, utils, writeFile} from "xlsx"
- 
+
 
 const Projects= () => {
 
     // project list path
-    const projectFiles= ["/IFCprojects/01.ifc", "/IFCprojects/BuroHalle_Einbauteile.ifc","/IFCprojects/GB_City.ifc", "/IFCprojects/room.blend.ifc"];
-    
-    // excel file upload
-    const uploadExcelFile = (e) => {
-        console.log("upload excel")
-        const file = e.target.files[0]
-        const reader= new FileReader()
-        reader.onload=(event)=>{
-            reader.onload=(event)=>{
-                //parse data
-                reader.readAsBinaryString(file)
-                const bianaryString=event.target.result
-                const workBook = readFile(bianaryString,{type:"bianary"})
-
-                //first sheet
-                const workSheetName= workBook.SheetNames[0]
-                const workSheet = workBook.Sheets[workSheetName]
-
-                const fileData = utils.sheet_to_json(workSheet, {header:1})
-                console.log(fileData)
-            }
-        }
-        
-    }
- 
+    const projectFiles= ["/IFCprojects/01.ifc", "/IFCprojects/BuroHalle_Einbauteile.ifc","/IFCprojects/GB_City.ifc", "/IFCprojects/room.blend.ifc"]; 
     return(
         <div className="projects">
             <Sidebar/>
@@ -54,11 +28,11 @@ const Projects= () => {
                 <div className="collaboratorContainer">
                     <div className="topContainer">
                         <p>COLLABORATORS</p>
-                        <p onClick={uploadExcelFile} className="uploadbutton">Upload Excel</p>
+                        <p className="uploadbutton">Upload Excel</p>
                     </div>
                     <div className="bottomUpload">
                         here the excel table comes
-                        <ImportTable />
+                        
                     </div>
                 </div>               
             </div>

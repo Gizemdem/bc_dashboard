@@ -9,7 +9,7 @@ import { IfcViewerAPI } from "web-ifc-viewer";
 import ElementTable from "../../components/elementTable/ElementTable";
 
 import GetAppIcon from '@mui/icons-material/GetApp';
-import {utils, writeFileXLSX} from "xlsx";
+// import {utils, writeFileXLSX} from "xlsx";
 
 import {GLTFExporter} from "three/examples/jsm/exporters/GLTFExporter";
 import "@google/model-viewer/dist/model-viewer";
@@ -148,17 +148,17 @@ const Dashboard = () => {
 
     }
 
-    // export excel 
-    const exportExcel= ()=>{
-        var wb = utils.book_new(),
-        ws = utils.json_to_sheet(selectedData);
-        utils.book_append_sheet(wb,ws, "Sheet1");
-        //  get current date
-        const current = new Date();
-        const date = `${current.getDate()}.${current.getMonth()+1}.${current.getFullYear()}`;
-        let fileName = `BIMDatabase_${date}.xlsx`
-        writeFileXLSX(wb, fileName);
-    }
+    // // export excel 
+    // const exportExcel= ()=>{
+    //     var wb = utils.book_new(),
+    //     ws = utils.json_to_sheet(selectedData);
+    //     utils.book_append_sheet(wb,ws, "Sheet1");
+    //     //  get current date
+    //     const current = new Date();
+    //     const date = `${current.getDate()}.${current.getMonth()+1}.${current.getFullYear()}`;
+    //     let fileName = `BIMDatabase_${date}.xlsx`
+    //     writeFileXLSX(wb, fileName);
+    // }
 
     //
     //IFC -- GLB
@@ -220,7 +220,7 @@ const Dashboard = () => {
                 <div className="listContainer">
                     <div className="listTitle"> 
                         <p>Project Database</p>
-                        <GetAppIcon onClick={exportExcel}/>
+                        <GetAppIcon/>
                     </div>      
                     <ElementTable data={selectedData}/>
                 </div> 
