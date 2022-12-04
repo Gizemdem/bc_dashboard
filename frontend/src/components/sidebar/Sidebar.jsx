@@ -4,8 +4,6 @@ import ConnectWallet from "./Wallet";
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import PageviewOutlinedIcon from '@mui/icons-material/PageviewOutlined';
-
-import CropIcon from '@mui/icons-material/Crop';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -15,9 +13,7 @@ import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 
-
 import {Link} from "react-router-dom";
-
 
 const Sidebar = (props) =>{
     return(
