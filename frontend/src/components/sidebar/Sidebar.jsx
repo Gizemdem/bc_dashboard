@@ -34,17 +34,11 @@ const Sidebar = (props) =>{
                         <p className="title">PROJECTS</p>
                         <li>
                             <FolderOpenIcon onClick={props.openDoc} className="icon" />
-                            <span>Access</span>
+                            <span>File</span>
                         </li>
                         <li>
                             <GroupsOutlinedIcon className="icon"/>
-                            <span>Collaborators</span>
-                        </li>
-                    </Link>
-                    <Link to="/cost" style = {{textDecoration:"none"}}>
-                        <li>
-                            <PriceChangeOutlinedIcon className="icon"/>
-                            <span>Cost Management</span>
+                            <span>Collaboration</span>
                         </li>
                     </Link>
                     {/* dashboard */}
@@ -53,10 +47,6 @@ const Sidebar = (props) =>{
                         <li>
                             <PageviewOutlinedIcon className="icon"/>
                             <span>Model Viewer</span>
-                        </li>
-                        <li>
-                            <CropIcon className="icon"/>
-                            <span>Clipping Plane</span>
                         </li>
                         <li>
                             <TableChartOutlinedIcon className="icon"/>
@@ -74,6 +64,12 @@ const Sidebar = (props) =>{
 
                     <Link to="/account" style={{textDecoration:"none"}}>
                         <p className="title">ACCOUNTING</p>
+                        <Link to="/cost" style = {{textDecoration:"none"}}>
+                        <li>
+                            <PriceChangeOutlinedIcon className="icon"/>
+                            <span>Cost Management</span>
+                        </li>
+                        </Link>
                         <li>                        
                             <AccountBalanceWalletOutlinedIcon onClick={ConnectWallet} className="icon" />
                             <span>Payment</span>
