@@ -11,46 +11,39 @@ import {
     progressPaymentContract,
     connectWallet,
     getCurrentWalletConnected,
+    setConstructionElements,
+
 } from "../../util/interact.js";
 
 const Cost = ()=>{
-
-    const [isLoading, setLoading] = useState(false);
-    const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);
-    const [isSnackbarOpen, setSnackbarOpen] = useState(false);
-
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
-    const [ifcLoadingErrorMessage, setIfcLoadingErrorMessage] = useState();
 
     //State variables for contract
     const [walletAddress, setWallet] = useState("");
+    const [status, setStatus] = useState("");
+    const [message, setMessage] = useState("No connection to the network.");
     const [elements, setElements] = useState([]);
     //called only once
     useEffect(() => { //TODO: implement
-
+        async function fetchWallet() {
+            const {address, status} = await getCurrentWalletConnected();
+            setWallet(address);
+            setStatus(status); 
+          }
+          fetchWallet();
     }, []);
-
-    function addSmartContractListener() { //TODO: implement
-
-    }
-
-    function addWalletListener() { //TODO: implement
-
-    }
 
     const connectWalletPressed = async () => {
         const walletResponse = await connectWallet();
         setWallet(walletResponse.address);
     };
 
-    const onUpdatePressed = async () => { //TODO: implement
-
+    const onUpdatePressed = async () => {
+        const { status } = await setConstructionElements(walletAddress, ["wall", "column","window"],[10,20,50]);
+        setStatus(status);
     };
 
-    useEffect(() => {
-        // load();
-    })
     window.onkeydown = (event) => {
         if(event.code === 'Escape') {
             
@@ -190,6 +183,7 @@ const Cost = ()=>{
                         onChange={(e) => setElements(e.target.value)}
                         value={elements}
                         />
+                        <p id="status">{status}</p>
                         <button id="publishButton" onClick={onUpdatePressed}>
                         Update
                         </button>
