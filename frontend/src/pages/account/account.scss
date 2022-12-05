@@ -1,52 +1,77 @@
 .accounting {
     display: flex;
+    width: 100%;
     .homeContainer{
         flex: 6;
-        .transactionContainer{
+        .section1{
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            .section1a{
+                -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+                box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+                border-radius: 10px;
+                padding: 20px;
+                margin-left:20px;
+                margin-right: 10px;
+                // height: 400px;
+                flex: 3;
+                p{
+                    margin-bottom: 20px;
+                }
+                label{
+                    margin-left: 30px;
+                }
+                .form{
+                    padding:20px ;
+                    display: flex; 
+                    align-items: center;
+                    gap: 20px;
+                    .formInputAccount{
+                        align-items: center;
+                        border: 0.5px solid lightgray;
+                        border-radius:10px;
+                        height: 40px;
+                        font-size: 15px;
+                        width: 600px;
+                        padding-left: 10px;
+                    }
+                    .formButton{
+                        align-items: center;
+                        border: 0.5px solid lightgray;
+                        border-radius:10px;
+                        height: 40px;
+                        font-size: 15px;
+                        width:200px;
+                        background-color: rgba(255, 255, 255, 0.47);
+                        cursor: pointer;
+                        &:hover{
+                        background-color: #7a72a112;
+                        }
+                    }
+                }
+                .table{
+                    display: flex;
+                    width: auto;
+                }
+            }
+            .section1b{
+                -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+                box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+                border-radius: 10px;
+                padding: 20px;
+                margin-left: 10px;
+                margin-right: 20px;
+                // height: 400px;
+                flex: 2;
+            }  
+        } 
+        .section2{
             -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
             border-radius: 10px;
             padding: 20px;
             margin: 20px;
-            // height: 400px;
-            padding: 20px;
-            .form{
-                padding:40px ;
-                display: flex; 
-                align-items: center;
-                gap: 20px;
-                .formInputAmount{
-                    align-items: center;
-                    border: 0.5px solid lightgray;
-                    border-radius:10px;
-                    height: 40px;
-                    font-size: 15px;
-                    width: 300px;
-                    padding-left: 10px;
-                }
-                .formInputAccount{
-                    align-items: center;
-                    border: 0.5px solid lightgray;
-                    border-radius:10px;
-                    height: 40px;
-                    font-size: 15px;
-                    width: 600px;
-                    padding-left: 10px;
-                }
-                .formButton{
-                    align-items: center;
-                    border: 0.5px solid lightgray;
-                    border-radius:10px;
-                    height: 40px;
-                    font-size: 15px;
-                    width:200px;
-                    background-color: rgba(255, 255, 255, 0.47);
-                    cursor: pointer;
-                    &:hover{
-                    background-color: #7a72a112;
-                    }
-                }
-            }
-        } 
+        }
     }
 }

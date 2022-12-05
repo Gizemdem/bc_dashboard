@@ -1,7 +1,6 @@
 import "./dashboard.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
-
 import {Color, MeshLambertMaterial} from "three";
 import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
 import React, { createRef, useState, useEffect } from "react";
@@ -36,12 +35,15 @@ const Dashboard = () => {
             if (elementIndex !== -1) {
                 // updating to new element
                 oldArray[elementIndex] = newElement;
+                localStorage.setItem("elements",JSON.stringify([...oldArray]));
                 return [...oldArray];
             }
             else {
+                localStorage.setItem("elements",JSON.stringify([...oldArray,newElement]));
                 return [...oldArray, newElement];
             }            
         } );
+        
     }
 
     useEffect(() => {
