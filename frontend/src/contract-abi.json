@@ -42,6 +42,24 @@
         "internalType": "string[]",
         "name": "ids",
         "type": "string[]"
+      }
+    ],
+    "name": "payElements",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "contractor",
+        "type": "address"
+      },
+      {
+        "internalType": "string[]",
+        "name": "ids",
+        "type": "string[]"
       },
       {
         "internalType": "uint256[]",

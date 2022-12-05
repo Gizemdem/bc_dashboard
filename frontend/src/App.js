@@ -7,6 +7,7 @@ import Account from "./pages/account/Account";
 import Projects from "./pages/projects/Projects";
 import Cost from "./pages/cost/Cost";
 import { HashRouter, Route, Routes } from "react-router-dom";
+import Inspection from "./pages/inspection/Inspection";
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
               <Route path="/login" element = {<Login/>}/>
               <Route path="/account" element= {<Account/>}/>
               <Route path="/cost" element={<Cost/>}/>
+              <Route path="/inspection" element={<Inspection/>}/>
+
           </Routes>
         </HashRouter>
     </div>

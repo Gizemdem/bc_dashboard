@@ -48,8 +48,6 @@ const StatusPopover = (props) => {
     setProgresStatus(event.target.value);
   };
     
-
-
   return (
     <Popover className="statusPopover" 
       id={id}
@@ -73,22 +71,10 @@ const StatusPopover = (props) => {
             </React.Fragment>                        
           </>
         )}
-      </Grid>
-      
+      </Grid>      
       <Grid className="bottomDiv">  
         <p className="bottomTitle">SET PROPERTIES</p> 
-        <LocalizationProvider className="bottomItems" dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="ETC"
-            value={etcDate}
-            onChange={(newValue) => {
-              handleSetETCDate(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
-
-        <Box sx={{ minWidth: 120 }} marginBottom="20px" marginTop="20px">
+        <Box sx={{ minWidth: 120 }} marginBottom="10px" marginTop="10px">
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Progress</InputLabel>
             <Select
@@ -101,22 +87,31 @@ const StatusPopover = (props) => {
               }}
             >
               <MenuItem key="assigned" value={"Assigned"}>Assigned</MenuItem>
-              <MenuItem key="doing" value={"Doing"}>Doing</MenuItem>
-              <MenuItem key="inspection" value={"Inspection"}>Inspection</MenuItem>
+              {/* <MenuItem key="doing" value={"Doing"}>Doing</MenuItem> */}
+              {/* <MenuItem key="inspection" value={"Inspection"}>Inspection</MenuItem> */}
               <MenuItem key="review" value={"Review"}>Review</MenuItem>
-              <MenuItem key="revision" value={"Revision"}>Revision</MenuItem>
+              {/* <MenuItem key="revision" value={"Revision"}>Revision</MenuItem> */}
               <MenuItem key="done" value={"Done"}>Done</MenuItem>
-              <MenuItem key="payed" value={"Payed"}>Payed</MenuItem>
+              {/* <MenuItem key="payed" value={"Payed"}>Payed</MenuItem> */}
             </Select>
           </FormControl>
         </Box>
-
-        <LocalizationProvider className="bottomItems" dateAdapter={AdapterDayjs}>
-          <DatePicker
+        <LocalizationProvider  dateAdapter={AdapterDayjs}>
+          <DatePicker className="bottomItems"
             label="Set Date"
             value={date}
             onChange={(newValue) => {
               handleSetDate(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
+        <LocalizationProvider  dateAdapter={AdapterDayjs}>
+          <DatePicker className="bottomItems"
+            label="ETC"
+            value={etcDate}
+            onChange={(newValue) => {
+              handleSetETCDate(newValue);
             }}
             renderInput={(params) => <TextField {...params} />}
           />

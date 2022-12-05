@@ -45,7 +45,7 @@ const ViewerContainer = forwardRef((props, ref) => {
             ifcRecords['Entity Type'] = type;
             ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
             ifcRecords['Name'] = props.Name && props.Name?.value;
-            ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
+            // ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
             setIfcRecords(ifcRecords);
           }  
           setAnchorElem(event.target);

@@ -3,8 +3,6 @@ import Sidebar  from "../../components/sidebar/Sidebar" ;
 import Navbar from "../../components/navbar/Navbar";
 import Widget from "../../components/widget/Widget";
 
-// import CommitContainer from "../../components/commitContainer/CommitContainer"
-
 import TopWidget from "../../components/topWidget/TopWidget"
 
 
@@ -15,18 +13,9 @@ import React, { createRef, useState, useEffect } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
 
 
-import { ConstructionOutlined } from "@mui/icons-material";
-
 const Home = () => {
-
-    const [isLoading, setLoading] = useState(false);
-    const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);
-    const [isSnackbarOpen, setSnackbarOpen] = useState(false);
-
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
-    const [ifcLoadingErrorMessage, setIfcLoadingErrorMessage] = useState();
-
 
     useEffect(() => {
         if (ifcContainer.current) {
@@ -40,7 +29,6 @@ const Home = () => {
                 USE_FAST_BOOLS: false,
                 });
             setViewer(ifcViewer);
-
             // getting the path from local storage, project files are in Project Page
             let path = localStorage.getItem("projectPath");
             if (path !== "" ){
@@ -50,45 +38,23 @@ const Home = () => {
 
         // ifcOnLoad().catch(console.log("Error"));
         // console.log("Loaded");
-    }, []);
+    }, [ifcContainer]);
 
     const ifcOnLoad = async () => {
         //linked github
         const file = "https://raw.githubusercontent.com/IFCjs/hello-world/main/IFC/01.ifc";
         if (file && viewer) {
-
-            // reset
-            setIfcLoadingErrorMessage('');
-            setLoading(true);
-
             // load file
             const model = await viewer.IFC.loadIfcUrl(file);
             await viewer.shadowDropper.renderShadow(model.modelID);
-
-            // update information
-            setSnackbarOpen(true);
-            setLoading(false)
         }
     };
-    const ifcOnLoadError = async (err) => {
-        setIfcLoadingErrorMessage(err.toString());
-      };
-
-    const toggleClippingPlanes = () => {
-        if (viewer) {
-          viewer.toggleClippingPlanes();
-          if (viewer.clipper.active) {
-            setClippingPaneSelected(true);
-          } else {
-            setClippingPaneSelected(false);
-          }
-        }
-      };
+    
     //   ifcOnLoad();
 
     return (
         <div className="home"> 
-            <Sidebar openDoc={ifcOnLoad} cropActivate={toggleClippingPlanes}/>
+            <Sidebar openDoc={ifcOnLoad}/>
             <div className="homeContainer"> 
                 <Navbar />
                 <div className="widgets">
@@ -106,8 +72,7 @@ const Home = () => {
                         viewer={viewer}
                         setSelectedData={{}} 
                     />
-                    {/* <CommitContainer className="commitContainer"  /> */}
-                    
+                    {/* <CommitContainer className="commitContainer"  /> */}                    
                 </div>
                 <div className="listContainer">
                     <div className="listTitle"> Project Collaboration</div>      

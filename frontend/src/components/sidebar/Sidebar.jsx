@@ -48,9 +48,11 @@ const Sidebar = (props) =>{
                             <TableChartOutlinedIcon className="icon"/>
                             <span>Element Database</span>
                         </li>
+                    </Link>
+                    <Link to="/inspection" style= {{textDecoration:"none"}}>
                         <li>
                             <ViewInArOutlinedIcon className="icon"/>
-                            <span>AR Control</span>
+                            <span>Site Inspection</span>
                         </li>
                         <li>
                             <ViewKanbanOutlinedIcon className="icon"/>

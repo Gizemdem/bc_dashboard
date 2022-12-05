@@ -89,12 +89,45 @@ export const getCurrentWalletConnected = async () => {
     }
   };
 
-export const setConstructionElements = async (address, elementIDs, elementcosts) => {
+//pay  
+export const payElements = async (address, elementIDs) =>{
+  const transactionParameters = {
+    to: contractAddress, // Required except during contract publications.
+    from: address, // must match user's active address.
+    data: progressPaymentContract.methods.payElements( elementIDs).encodeABI(),
+  };
+
+//sign the transaction
+  try {
+    const txHash = await window.ethereum.request({
+      method: "eth_sendTransaction",
+      params: [transactionParameters],
+    });
+    return {
+      status: (
+        <span>
+          ✅{" "}
+          <a target="_blank" href={`https://goerli.etherscan.io/tx/${txHash}`} rel="noreferrer">
+            View the status of your transaction on Etherscan!
+          </a>
+          <br />
+          ℹ️ Once the transaction is verified by the network, the message will
+          be updated automatically.
+        </span>
+      ),
+    };
+  } catch (error) {
+    return {
+      status: "😥 " + error.message,
+    };
+  }
+}
+export const setConstructionElements = async (address, contractorAddress, elementIDs, elementcosts) => {
   //set up transaction parameters
  const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
     from: address, // must match user's active address.
-    data: progressPaymentContract.methods.setConstructionElements(elementIDs,elementcosts).encodeABI(),
+    data: progressPaymentContract.methods.setConstructionElements(contractorAddress, elementIDs, elementcosts).encodeABI(),
   };
 
 //sign the transaction

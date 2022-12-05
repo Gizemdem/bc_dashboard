@@ -1,6 +1,7 @@
-import "./dashboard.scss"
+import "./inspection.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
+import Widget from "../../components/widget/Widget"
 
 import {Color, MeshLambertMaterial} from "three";
 import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
@@ -13,7 +14,7 @@ import GetAppIcon from '@mui/icons-material/GetApp';
 import {GLTFExporter} from "three/examples/jsm/exporters/GLTFExporter";
 import "@google/model-viewer/dist/model-viewer";
 
-const Dashboard = () => {
+const Inspection = () => {
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
     
@@ -180,32 +181,36 @@ const Dashboard = () => {
     //IFC -- GLB
     //      
     return (
-        <div className="dashboard"> 
+        <div className="inspection"> 
             <Sidebar/>
             <div className="homeContainer" > 
                 <Navbar/>
-                <div >
+                <div className="arContainer">
+                    <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" > </model-viewer>
+                    <button className="formButton" onClick={exportScene}> AR</button>
+                </div>
+                {/* <div >
                     <ViewerContainer className="viewerContainer"
                         ref={ifcContainer}
                         viewer={viewer}
                         setSelectedData={handleSaveData}
                         changeColor={changeColor}
                     />
-                </div>
-                <div className="listContainer">
-                    <div className="listTitle"> 
-                        <p>Project Database</p>
+                </div> */}
+                <div className="issueContainer">
+                    <div className="issueTitle"> 
+                        <p>Issue Kanban</p>
                         <GetAppIcon/>
-                    </div>      
-                    <ElementTable data={selectedData}/>
+                    </div>
+                    <div className="widgets">
+                        <Widget/>
+                        <Widget/>
+                        <Widget/>
+                    </div>     
                 </div> 
-                <div className="arContainer">
-                    <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" > </model-viewer>
-                    <button className="formButton" onClick={exportScene}> AR</button>
-                </div>
             </div>          
         </div>
     )
 }
 
-export default Dashboard
+export default Inspection

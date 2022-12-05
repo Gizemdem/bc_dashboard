@@ -3,8 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./projects.scss";
 import ProjectFolder from "../../components/projectFolder/ProjectFolder";
-
-
+import Table from "../../components/table/Table"; 
 
 const Projects= () => {
 
@@ -29,11 +28,8 @@ const Projects= () => {
                     <div className="topContainer">
                         <p>COLLABORATORS</p>
                         <p className="uploadbutton">Upload Excel</p>
-                    </div>
-                    <div className="bottomUpload">
-                        here the excel table comes
-                        
-                    </div>
+                    </div>   
+                    <Table />                   
                 </div>               
             </div>
         </div>

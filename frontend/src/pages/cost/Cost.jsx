@@ -12,7 +12,7 @@ import {
     connectWallet,
     getCurrentWalletConnected,
     setConstructionElements,
-
+    payElements,
 } from "../../util/interact.js";
 
 const Cost = ()=>{
@@ -24,8 +24,9 @@ const Cost = ()=>{
     const [status, setStatus] = useState("");
     const [message, setMessage] = useState("No connection to the network.");
     const [elements, setElements] = useState([]);
+    const contractorWalletAddress = "0xaCd2741F67F8Dc0633256c77Ed1cfE05E0a2c54b";
     //called only once
-    useEffect(() => { //TODO: implement
+    useEffect(() => {
         async function fetchWallet() {
             const {address, status} = await getCurrentWalletConnected();
             setWallet(address);
@@ -40,7 +41,11 @@ const Cost = ()=>{
     };
 
     const onUpdatePressed = async () => {
-        const { status } = await setConstructionElements(walletAddress, ["wall", "column","window"],[10,20,50]);
+        const { status } = await setConstructionElements(walletAddress, contractorWalletAddress, ["wall", "column","window"],[150,100,50]);
+        setStatus(status);
+    };
+    const payApprovedElements = async () => {
+        const {status} = await payElements(walletAddress,["window"])
         setStatus(status);
     };
 
@@ -187,6 +192,7 @@ const Cost = ()=>{
                         <button id="publishButton" onClick={onUpdatePressed}>
                         Update
                         </button>
+                        <button onClick={payApprovedElements}>Sent Transaction</button>
                     </div>
                 </div>
             </div>
