@@ -10,6 +10,8 @@ import { IfcViewerAPI } from "web-ifc-viewer";
 import ElementTable from "../../components/elementTable/ElementTable";
 
 import GetAppIcon from '@mui/icons-material/GetApp';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 import {GLTFExporter} from "three/examples/jsm/exporters/GLTFExporter";
 import "@google/model-viewer/dist/model-viewer";
@@ -25,6 +27,14 @@ const Inspection = () => {
             viewer.IFC.selector.unHighlightIfcItems();
         }
     }
+
+    //toggle switch model viewer / AR
+    const [toggleSwitch, setToggleSwitch] = React.useState('viewer');
+    const handleChange = (event, newToggleSwitch) => {
+        if (newToggleSwitch === "ar") {exportScene()}
+        setToggleSwitch(newToggleSwitch);
+    };
+
     
     // List of selected elements
     const [selectedData, setSelectedData] = useState([]);
@@ -46,6 +56,7 @@ const Inspection = () => {
     }
 
     useEffect(() => {
+        // debugger;
         if (ifcContainer.current) {
             const container = ifcContainer.current;
             const ifcViewer = new IfcViewerAPI({container, backgroundColor: new Color(0xffffff)});
@@ -63,7 +74,7 @@ const Inspection = () => {
                 ifcViewer.IFC.loadIfcUrl(localStorage.getItem("projectPath"));
             } 
         }
-    }, [ifcContainer.current]);
+    }, [toggleSwitch]);
 
     const changeColor = (id, status) => {
         // access the model and change color according to status
@@ -158,6 +169,8 @@ const Inspection = () => {
             options
         )
     }
+
+
     //button onClick AR
     const exportScene =()=>{
         if (viewer){
@@ -177,26 +190,35 @@ const Inspection = () => {
     }
     const [modelURL, setModelURL] = useState("");
     
-    //
-    //IFC -- GLB
-    //      
     return (
         <div className="inspection"> 
             <Sidebar/>
             <div className="homeContainer" > 
                 <Navbar/>
-                <div className="arContainer">
-                    <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" > </model-viewer>
-                    <button className="formButton" onClick={exportScene}> AR</button>
-                </div>
-                {/* <div >
+                <div className="switchContainer">
+                    <ToggleButtonGroup
+                        color="primary"
+                        value={toggleSwitch}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="Platform"
+                        >
+                        <ToggleButton value="viewer">Viewer</ToggleButton>
+                        <ToggleButton value="ar">AR</ToggleButton>
+                    </ToggleButtonGroup>
+                    {toggleSwitch ==="ar"? 
+                    <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" className="viewerContainer" > </model-viewer>
+                    :  
                     <ViewerContainer className="viewerContainer"
                         ref={ifcContainer}
                         viewer={viewer}
                         setSelectedData={handleSaveData}
                         changeColor={changeColor}
                     />
-                </div> */}
+                    }
+
+                    {/* <button className="formButton" onClick={exportScene}> AR</button> */}
+                </div>
                 <div className="issueContainer">
                     <div className="issueTitle"> 
                         <p>Issue Kanban</p>

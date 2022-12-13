@@ -32,8 +32,9 @@ const ViewerContainer = forwardRef((props, ref) => {
   }
 
   const ifcOnClick = async (event) => {
+    debugger;
     if (viewer) {
-        const result = await viewer.IFC.pickIfcItem(true);
+        const result = await viewer.IFC.selector.pickIfcItem(true, true);
         if (result) {
           setSelected(result);
           const props = await viewer.IFC.getProperties(result.modelID, result.id, false);
@@ -81,6 +82,8 @@ const ViewerContainer = forwardRef((props, ref) => {
         ref={ref}
         onDoubleClick={ifcOnClick}
         onContextMenu={ifcOnRightClick}
+        //toDo when component reloads this gives error//
+        //                                            //
         onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
       >
         <Box sx={{ width: '100%' }}>
