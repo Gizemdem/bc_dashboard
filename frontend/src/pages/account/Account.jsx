@@ -42,7 +42,7 @@ const Account = ()=>{
                 </div>
                 <div className="section2">
                     <p>ELEMENT LIST TABLE</p>
-                    <ElementTable data={completedElements}/>
+                    {completedElements? <ElementTable data={completedElements}/> : null}
                 </div>
             </div>
         </div>

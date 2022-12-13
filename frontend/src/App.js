@@ -1,4 +1,4 @@
-import Home from "./pages/home/Home";
+// import Home from "./pages/home/Home";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
@@ -17,16 +17,16 @@ function App() {
         <HashRouter>
           <Routes>
               <Route path="/" >
-                  <Route index element = {<Home/>}/>
+                <Route index element = {<Projects/>}/>
+                <Route path="/projects" element={<Projects/>}/>
+                <Route path="/dashboard" element = {<Dashboard/>}/>
+                <Route path="/welcome" element = {<Welcome/>}/>
+                <Route path="/register" element = {<Register/>}/>
+                <Route path="/login" element = {<Login/>}/>
+                <Route path="/account" element= {<Account/>}/>
+                <Route path="/cost" element={<Cost/>}/>
+                <Route path="/inspection" element={<Inspection/>}/>
               </Route>
-              <Route path="/projects" element={<Projects/>}/>
-              <Route path="/dashboard" element = {<Dashboard/>}/>
-              <Route path="/welcome" element = {<Welcome/>}/>
-              <Route path="/register" element = {<Register/>}/>
-              <Route path="/login" element = {<Login/>}/>
-              <Route path="/account" element= {<Account/>}/>
-              <Route path="/cost" element={<Cost/>}/>
-              <Route path="/inspection" element={<Inspection/>}/>
 
           </Routes>
         </HashRouter>

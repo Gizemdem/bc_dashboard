@@ -59,15 +59,15 @@ const Sidebar = (props) =>{
                             <span>Issue Kanban</span>
                         </li>
                     </Link>
-
-                    <Link to="/account" style={{textDecoration:"none"}}>
-                        <p className="title">ACCOUNTING</p>
-                        <Link to="/cost" style = {{textDecoration:"none"}}>
+                    
+                    <p className="title">ACCOUNTING</p>
+                    <Link to="/cost" style = {{textDecoration:"none"}}>
                         <li>
                             <PriceChangeOutlinedIcon className="icon"/>
                             <span>Cost Management</span>
                         </li>
-                        </Link>
+                    </Link>
+                    <Link to="/account" style={{textDecoration:"none"}}>
                         <li>                        
                             <AccountBalanceWalletOutlinedIcon onClick={ConnectWallet} className="icon" />
                             <span>Payment</span>

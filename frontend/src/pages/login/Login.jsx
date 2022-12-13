@@ -53,7 +53,7 @@ const LoginPage = () => {
                     onChange={onChange}
                 />
                 ))}
-                <Link to="/" >
+                <Link to="/projects" >
                     <button className="button">Login</button>
                 </Link>
             </form>

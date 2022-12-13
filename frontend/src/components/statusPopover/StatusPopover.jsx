@@ -96,6 +96,7 @@ const StatusPopover = (props) => {
             </Select>
           </FormControl>
         </Box>
+            
         <LocalizationProvider  dateAdapter={AdapterDayjs}>
           <DatePicker className="bottomItems"
             label="Set Date"
@@ -106,6 +107,9 @@ const StatusPopover = (props) => {
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
+
+        {/* conditionally render the estimated time construction */}
+        {progresStatus ==="Assigned"? 
         <LocalizationProvider  dateAdapter={AdapterDayjs}>
           <DatePicker className="bottomItems"
             label="ETC"
@@ -115,7 +119,8 @@ const StatusPopover = (props) => {
             }}
             renderInput={(params) => <TextField {...params} />}
           />
-        </LocalizationProvider>
+        </LocalizationProvider> : null}
+
         <Button  className="button" onClick={()=>{
           // We create a new copy of the ifc element with date and progress before sending 
           let newElement = {...curIfcRecords};
