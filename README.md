@@ -1,6 +1,6 @@
 # Goldbeck SmartConstruction ™
 
-![Alt text](splashscreen.jpg)
+![Alt text](splashscreen.jpg) 
 
 ## About 👀
 
