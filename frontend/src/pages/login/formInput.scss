@@ -1,0 +1,36 @@
+.formInput{
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    input{
+        padding: 15px;
+        margin: 10px 0px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background-color:rgba(245, 245, 245, 0.689);
+        
+
+        label{
+            padding-top: 10px;
+            font-size: 12px;
+            color: gray;
+        }
+    
+        .errorMessage{
+            font-size: 12px;
+            padding: 3px;
+            color: red;
+            display: none;
+        }
+    
+        &:invalid[focused="true"]{
+            border: 1px solid red;
+        }
+    
+        &:invalid[focused="true"] ~ span{
+            display: block;
+        }
+    } 
+}

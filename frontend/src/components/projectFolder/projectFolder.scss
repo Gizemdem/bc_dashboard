@@ -1,0 +1,28 @@
+.folder{
+    width: 150px;
+    font-size: 12px;
+    flex: 0 0 auto;         
+    display: flex;          
+    flex-direction: column; 
+    .folderImg{
+        width: 100%;
+        border-radius: 9px;
+        padding: 5px;
+        margin-bottom: 9px;
+        color: gray;
+        cursor: pointer;
+        &:hover{
+            background-color: #7a72a112;
+        }
+    }
+    p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -10px;
+    
+    }
+}
