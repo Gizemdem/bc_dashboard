@@ -8,7 +8,7 @@ This is a blockchain application for construction industry developed as part of 
 
 ### Goal 🎯
 
-<p>The aim is to automaze the payment system with smart contracts.</p>
+<p>The aim is to automatize the payment system with smart contracts.</p>
 
 ## How to run 🚀
 
