@@ -32,7 +32,6 @@ const ViewerContainer = forwardRef((props, ref) => {
   }
 
   const ifcOnClick = async (event) => {
-    debugger;
     if (viewer) {
         const result = await viewer.IFC.selector.pickIfcItem(true, true);
         if (result) {
@@ -46,6 +45,7 @@ const ViewerContainer = forwardRef((props, ref) => {
             ifcRecords['Entity Type'] = type;
             ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
             ifcRecords['Name'] = props.Name && props.Name?.value;
+            ifcRecords['ModelId'] = result.id;
             // ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
             setIfcRecords(ifcRecords);
           }  
