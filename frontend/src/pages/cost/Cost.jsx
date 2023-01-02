@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./cost.scss";
 import CostTable from "./CostTable";
 import {Color, MeshLambertMaterial} from "three";
-import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
+import { CostViewer } from "./CostViewer";
 import { IfcViewerAPI } from "web-ifc-viewer";
 
 import {
@@ -160,16 +160,29 @@ const Cost = ()=>{
                 <Navbar/>
                 <div className="rowContainer">
                     <div className="container">
-                        <ViewerContainer className="viewercontainer" 
+                        <CostViewer className="viewercontainer"
                             ref={ifcContainer}
                             viewer={viewer}
                             setSelectedData={handleSaveData}
                             changeColor={changeColor}
                         />           
                     </div>
-                    <div className="container">
+                    <div className="containerTable">
                         <p>Cost Input</p>
                         <CostTable data={selectedData}/>
+                        <div>
+                            <input
+                            type="text"
+                            placeholder="Add elements and its cost in your smart contract."
+                            onChange={(e) => setElements(e.target.value)}
+                            value={elements}
+                            />
+                            <p id="status">{status}</p>
+                            <button id="publishButton" onClick={onUpdatePressed}>
+                            Update
+                            </button>
+                            <button onClick={payApprovedElements}>Sent Transaction</button>
+                        </div>
                         <button id="walletButton" onClick={connectWalletPressed}>
                             {walletAddress.length > 0 ? (
                                 "Connected: " +
@@ -180,19 +193,6 @@ const Cost = ()=>{
                                 <span>Connect Wallet</span>
                             )}
                         </button>
-                    </div>
-                    <div>
-                        <input
-                        type="text"
-                        placeholder="Add elements and its cost in your smart contract."
-                        onChange={(e) => setElements(e.target.value)}
-                        value={elements}
-                        />
-                        <p id="status">{status}</p>
-                        <button id="publishButton" onClick={onUpdatePressed}>
-                        Update
-                        </button>
-                        <button onClick={payApprovedElements}>Sent Transaction</button>
                     </div>
                 </div>
             </div>

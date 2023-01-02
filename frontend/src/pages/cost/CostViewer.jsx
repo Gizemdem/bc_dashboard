@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 
 const CostViewer = forwardRef((props, ref) => {
   
-  // const [anchorElem, setAnchorElem] = useState();
+  const [anchorElem, setAnchorElem] = useState();
   const [curIfcRecords, setIfcRecords] = useState();
 
   // Callback from Check page to change colors in the scene
