@@ -263,10 +263,10 @@ const Dashboard = () => {
                     </div>      
                     <ElementTable data={storedElements} onDelete={handleDeleteElement}/>
                 </div> 
-                <div className="arContainer">
+                {/* <div className="arContainer">
                     <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" > </model-viewer>
                     <button className="formButton" onClick={exportScene}> AR</button>
-                </div>
+                </div> */}
             </div>          
         </div>
     )
