@@ -1,5 +1,5 @@
 import React from "react";
-import "./statusPopover.scss"
+import "./costPopover.scss"
 import { Popover,Grid, Typography, Input } from "@mui/material";
 import Button from '@mui/material/Button';
 //datepicker imports
@@ -8,8 +8,8 @@ import TextField from '@mui/material/TextField';
 //dropdown status
 import Box from '@mui/material/Box';
 
-const StatusPopover = (props) => {
-
+const CostPopover = (props) => {
+  const [cost, setCost] = React.useState(0);
   const id = props.id;
   const open = props.open;
   const anchorElem = props.anchorEl;
@@ -19,6 +19,13 @@ const StatusPopover = (props) => {
 
   // callback to viewer container to update colors
   const updateColors = props.updateColors;
+
+  const handleCostChange = (event) => {
+    let newCost = Number(event.target.value);
+    if (newCost > 0) {
+      setCost(newCost);
+    }
+  }
     
   return (
     <Popover className="statusPopover" 
@@ -56,6 +63,8 @@ const StatusPopover = (props) => {
           width="150px"
         />
         <input 
+          value={cost}
+          onChange={(newValue) => {handleCostChange(newValue)}}
           type="number"
           placeholder="Cost $"
           className="bottomItems"
@@ -65,6 +74,7 @@ const StatusPopover = (props) => {
         <Button  className="button" onClick={()=>{
           // We create a new copy of the ifc element with date and progress before sending 
           let newElement = {...curIfcRecords};
+          newElement['cost'] = cost;
           sendElementToTable(newElement); 
           // updateColors(progresStatus); 
           handleClose()
@@ -74,4 +84,4 @@ const StatusPopover = (props) => {
     </Popover>
   )
 }
-export {StatusPopover};
+export {CostPopover};

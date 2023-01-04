@@ -58,19 +58,11 @@ const Cost = ()=>{
     }
     // List of selected elements
     const dummyData = [
-        {
-            id: '12345',
-            price: 500,
-        },
-        {
-            id: '12346',
-            price: 100,
-        },
     ]
     const [selectedData, setSelectedData] = useState(dummyData);
 
     const handleSaveData = (newElement) => {
-        
+        debugger;
         // To do: check if the new element already exists in the array
         // For example: when changing the date a previous element
         setSelectedData( oldArray => {
@@ -159,13 +151,16 @@ const Cost = ()=>{
             <div className="homeContainer">
                 <Navbar/>
                 <div className="rowContainer">
-                    <div className="container">
-                        <CostViewer className="viewercontainer"
-                            ref={ifcContainer}
-                            viewer={viewer}
-                            setSelectedData={handleSaveData}
-                            changeColor={changeColor}
-                        />           
+                    <div style={{width: '800px'}}>
+                        <div className="container">
+                            <CostViewer className="costViewer"
+                                ref={ifcContainer}
+                                viewer={viewer}
+                                setSelectedData={handleSaveData}
+                                changeColor={changeColor}
+                            />           
+                        </div>
+
                     </div>
                     <div className="containerTable">
                         <p>Cost Input</p>

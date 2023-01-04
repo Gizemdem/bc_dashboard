@@ -1,7 +1,7 @@
 import "./costViewer.scss";
 import React, { useState, forwardRef } from "react";
 
-import { StatusPopover } from "./StatusPopover";
+import { CostPopover } from "./CostPopover";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -43,9 +43,10 @@ const CostViewer = forwardRef((props, ref) => {
           if (props) {
             let ifcRecords = {};
             ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
+            ifcRecords['type'] = type;
             setIfcRecords(ifcRecords);
           }  
-          // setAnchorElem(event.target);
+          setAnchorElem(event.target);
       }
     }
   };
@@ -85,7 +86,7 @@ const CostViewer = forwardRef((props, ref) => {
         <Box sx={{ width: '100%' }}>
         </Box>
       </div>
-      <StatusPopover 
+      <CostPopover 
         id={id}
         open={open}
         anchorEl={anchorElem}
