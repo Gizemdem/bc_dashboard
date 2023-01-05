@@ -51,10 +51,10 @@ const CostViewer = forwardRef((props, ref) => {
     }
   };
 
-  const updateColors = (status) => {
+  const updateColors = () => {
     // we pass status to know which color to apply on the element
-    // status is one of "On progress" , "Payed" ..
-    changeColor(selected.id, status);
+    // status is one of "On progress" , "Payed" .
+    changeColor(selected.id);
   }
 
   // Create clipping plane

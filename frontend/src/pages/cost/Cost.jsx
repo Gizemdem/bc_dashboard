@@ -100,18 +100,19 @@ const Cost = ()=>{
         }
     }, [ifcContainer.current]);
 
-    const changeColor = (id, status) => {
+    const changeColor = (id) => {
+        debugger;
         // access the model and change color according to status
         console.log("Changing color");
-        console.log(status);
-        let color = new Color(0.0 ,0.0 ,0.0);
+        // console.log(status);
+        let color = new Color('blue');
         
-        if (status ==="Assigned") {
-            color = new Color('#ffdfad');
-        }
-        else if(status === "Doing"){
-            color = new Color('#F8E220');
-        }
+        // if (status ==="Assigned") {
+        //     color = new Color('#ffdfad');
+        // }
+        // else if(status === "Doing"){
+        //     color = new Color('#F8E220');
+        // }
         
         // ToDo! this only works if there is only one ifc model
         const modelId = 0;

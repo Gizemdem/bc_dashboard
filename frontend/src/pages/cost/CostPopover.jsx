@@ -76,7 +76,7 @@ const CostPopover = (props) => {
           let newElement = {...curIfcRecords};
           newElement['cost'] = cost;
           sendElementToTable(newElement); 
-          // updateColors(progresStatus); 
+          updateColors(); 
           handleClose()
         }}
         >Confirm</Button>
