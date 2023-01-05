@@ -74,7 +74,7 @@ const StatusPopover = (props) => {
       </Grid>      
       <Grid className="bottomDiv">  
         <p className="bottomTitle">SET PROPERTIES</p> 
-        <Box sx={{ minWidth: 120 }} marginBottom="10px" marginTop="10px">
+        <Box sx={{ minWidth: 120 }} marginBottom="10px" marginTop="10px" >
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Progress</InputLabel>
             <Select
@@ -96,31 +96,38 @@ const StatusPopover = (props) => {
             </Select>
           </FormControl>
         </Box>
-            
-        <LocalizationProvider  dateAdapter={AdapterDayjs}>
-          <DatePicker className="bottomItems"
-            label="Set Date"
-            value={date}
-            onChange={(newValue) => {
-              handleSetDate(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
-
-        {/* conditionally render the estimated time construction */}
-        {progresStatus ==="Assigned"? 
-        <LocalizationProvider  dateAdapter={AdapterDayjs}>
-          <DatePicker className="bottomItems"
-            label="ETC"
-            value={etcDate}
-            onChange={(newValue) => {
-              handleSetETCDate(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider> : null}
-
+        <Box sx={{ minWidth: 120 }} marginBottom="10px" marginTop="10px" >
+        <FormControl fullWidth>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker 
+              label="Set Date"
+              value={date}
+              onChange={(newValue) => {
+                handleSetDate(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+        </FormControl>
+        </Box>
+        <Box sx={{ minWidth: 120 }} marginBottom="10px" marginTop="10px" >
+          <FormControl fullWidth>
+          {/* conditionally render the estimated time construction */}
+          {progresStatus ==="Assigned"? 
+          <LocalizationProvider  dateAdapter={AdapterDayjs}>
+            <DatePicker 
+              label="ETC"
+              value={etcDate}
+              onChange={(newValue) => {
+                handleSetETCDate(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider> : null}   
+          </FormControl>
+        </Box>
+        <Box sx={{ minWidth: 120 }} marginBottom="10px" marginTop="10px">
+        
         <Button  className="button" onClick={()=>{
           // We create a new copy of the ifc element with date and progress before sending 
           let newElement = {...curIfcRecords};
@@ -132,6 +139,7 @@ const StatusPopover = (props) => {
           handleClose()
         }}
         >Confirm</Button>
+        </Box>
       </Grid> 
     </Popover>
   )
