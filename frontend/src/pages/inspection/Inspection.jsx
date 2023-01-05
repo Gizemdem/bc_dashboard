@@ -225,9 +225,9 @@ const Inspection = () => {
                         <GetAppIcon/>
                     </div>
                     <div className="widgets">
-                        <Widget/>
-                        <Widget/>
-                        <Widget/>
+                        <Widget type="active"/>
+                        <Widget type="inprocess"/>
+                        <Widget type="solved"/>
                     </div>     
                 </div> 
             </div>          
