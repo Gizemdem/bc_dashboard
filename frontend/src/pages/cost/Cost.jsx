@@ -22,9 +22,9 @@ const Cost = ()=>{
     //State variables for contract
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
-    const [message, setMessage] = useState("No connection to the network.");
     const [elements, setElements] = useState([]);
     const contractorWalletAddress = "0xaCd2741F67F8Dc0633256c77Ed1cfE05E0a2c54b";
+    const [selectedData, setSelectedData] = useState([]);
     //called only once
     useEffect(() => {
         async function fetchWallet() {
@@ -41,7 +41,10 @@ const Cost = ()=>{
     };
 
     const onUpdatePressed = async () => {
-        const { status } = await setConstructionElements(walletAddress, contractorWalletAddress, ["wall", "column","window"],[150,100,50]);
+        debugger;
+        const {ids,costs} = getIdandCost(selectedData);
+
+        const { status } = await setConstructionElements(walletAddress, contractorWalletAddress, ids,costs);
         setStatus(status);
     };
     const payApprovedElements = async () => {
@@ -56,11 +59,18 @@ const Cost = ()=>{
             viewer.IFC.selector.unHighlightIfcItems();
         }
     }
-    // List of selected elements
-    const dummyData = [
-    ]
-    const [selectedData, setSelectedData] = useState(dummyData);
+    // List of selected elements   
 
+    const getIdandCost = (data) => {
+        let costs = [];
+        let ids = [];
+        for (let elem of data) {
+            costs.push(elem['cost']); 
+            ids.push(elem['GlobalId']);
+        }
+        return {ids,costs}
+
+    }
     const handleSaveData = (newElement) => {
         debugger;
         // To do: check if the new element already exists in the array
@@ -152,8 +162,8 @@ const Cost = ()=>{
             <div className="homeContainer">
                 <Navbar/>
                 <div className="rowContainer">
-                    <div style={{width: '800px'}}>
-                        <div className="container">
+                    <div style={{width:"600px"}}>
+                        <div className="container" >
                             <CostViewer className="costViewer"
                                 ref={ifcContainer}
                                 viewer={viewer}
@@ -161,34 +171,30 @@ const Cost = ()=>{
                                 changeColor={changeColor}
                             />           
                         </div>
-
                     </div>
-                    <div className="containerTable">
-                        <p>Cost Input</p>
-                        <CostTable data={selectedData}/>
-                        <div>
-                            <input
-                            type="text"
-                            placeholder="Add elements and its cost in your smart contract."
-                            onChange={(e) => setElements(e.target.value)}
-                            value={elements}
-                            />
-                            <p id="status">{status}</p>
-                            <button id="publishButton" onClick={onUpdatePressed}>
-                            Update
-                            </button>
-                            <button onClick={payApprovedElements}>Sent Transaction</button>
-                        </div>
-                        <button id="walletButton" onClick={connectWalletPressed}>
-                            {walletAddress.length > 0 ? (
-                                "Connected: " +
-                                String(walletAddress).substring(0, 6) +
-                                "..." +
-                                String(walletAddress).substring(38)
-                            ) : (
-                                <span>Connect Wallet</span>
-                            )}
-                        </button>
+                    <div style={{width:"600px"}}>
+                        <div className="containerTable">
+                            <p classname="message"id="status">{status}</p>
+                            <hr></hr>
+                            <div className="bottom">
+                                <button className="formButton" id="walletButton" onClick={connectWalletPressed}>
+                                    {walletAddress.length > 0 ? (
+                                        "Connected: " +
+                                        String(walletAddress).substring(0, 6) +
+                                        "..." +
+                                        String(walletAddress).substring(38)
+                                    ) : (
+                                        <span>Connect Wallet</span>
+                                    )}
+                                </button>
+                                <button className="formButton" id="publishButton" onClick={onUpdatePressed}>
+                                    Send Elements and Cost
+                                </button>
+                                {/* <button onClick={payApprovedElements}>Sent Transaction</button> */}                            
+                            </div>
+                            <p >Cost Input</p>
+                            <CostTable className="top" data={selectedData}/>
+                        </div>    
                     </div>
                 </div>
             </div>
