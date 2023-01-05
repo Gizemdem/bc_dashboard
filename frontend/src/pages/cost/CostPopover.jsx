@@ -57,12 +57,6 @@ const CostPopover = (props) => {
       <Grid className="bottomDiv">  
         <p className="bottomTitle">Set Cost</p> 
         <input 
-          type="text"
-          placeholder="to Whom"
-          className="bottomItems"
-          width="150px"
-        />
-        <input 
           value={cost}
           onChange={(newValue) => {handleCostChange(newValue)}}
           type="number"
