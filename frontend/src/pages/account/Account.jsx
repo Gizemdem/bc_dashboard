@@ -6,14 +6,21 @@ import "./account.scss"
 import TotalCostFromContract from "./TotalCostFromContract";
 import ElementTable from "../../components/elementTable/ElementTable";
 import { useState } from "react";
+import { useStore } from "../../hooks/useStore";
+
 
 const Account = ()=>{
-    const [completedElements, setCompletedElements] = useState(null);
-    useEffect(()=>{
-        const doneElements=JSON.parse(localStorage.getItem("elements"));
-        console.log(doneElements);
-        setCompletedElements(doneElements);
-    },[])
+    // const [completedElements, setCompletedElements] = useState(null);
+    // useEffect(()=>{
+    //     const doneElements=JSON.parse(localStorage.getItem("elements"));
+    //     console.log(doneElements);
+    //     setCompletedElements(doneElements);
+    // },[])
+    const [storedElements] = useStore((state) => [
+        state.elements
+    ])
+
+    const doneElements = storedElements.filter((elem) => elem['Progress'] === 'Done')
 
     return(
         <div className="accounting">
@@ -42,7 +49,7 @@ const Account = ()=>{
                 </div>
                 <div className="section2">
                     <p>ELEMENT LIST TABLE</p>
-                    {completedElements? <ElementTable data={completedElements}/> : null}
+                    {doneElements? <ElementTable data={doneElements}/> : null}
                 </div>
             </div>
         </div>

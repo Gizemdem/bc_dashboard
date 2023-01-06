@@ -20,7 +20,7 @@ const Sidebar = (props) =>{
         <div className="sidebar">
             <div className="top">
                 <Link to="/" style= {{textDecoration:"none"}} className="logo">
-                    <span > Goldbeck </span> 
+                    <img className="image" src={process.env.PUBLIC_URL +"/logo.png"} alt=""></img>
                 </Link>
             </div>
             <hr className="hr"/>

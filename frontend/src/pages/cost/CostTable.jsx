@@ -25,6 +25,7 @@ const CostTable = (props) => {
           <TableRow>
             {/* <TableCell className="tableCell">ID</TableCell> */}
             <TableCell className="tableCell">Global Id</TableCell>
+            <TableCell className="tableCell">Type</TableCell>
             <TableCell className="tableCell">Cost</TableCell>
             <TableCell className="tableCell">Edit</TableCell>
           </TableRow>
@@ -32,8 +33,9 @@ const CostTable = (props) => {
         <TableBody>
           {data.map((row) => (
             <TableRow key={row['GlobalId']}>
-              <TableCell className="tableCell">{row['id']}</TableCell>
-              <TableCell className="tableCell">{row['price']}</TableCell>
+              <TableCell className="tableCell">{row['GlobalId']}</TableCell>
+              <TableCell className="tableCell">{row['type']}</TableCell>
+              <TableCell className="tableCell">{row['cost']}</TableCell>
               <TableCell className="tableCell" > 
                 {/* needs an action */}
                 <DeleteOutlineOutlinedIcon onClick={() => handleDelete (row['GlobalId'])} />                

@@ -28,7 +28,8 @@
     "sass": "^1.55.0",
     "stream-browserify": "^3.0.0",
     "web-ifc-viewer": "^1.0.213",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.1.5"
   },
   "scripts": {
     "start": "react-app-rewired start",

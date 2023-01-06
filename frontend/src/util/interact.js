@@ -18,7 +18,7 @@ if (window.ethereum) {
         method: "eth_requestAccounts",
     });
     const obj = {
-        status: "👆🏽 Write a message in the text-field above.",
+        status: "Send the elements and their cost to smart contract.",
         address: addressArray[0],
     };
     return obj;
@@ -56,12 +56,12 @@ export const getCurrentWalletConnected = async () => {
         if (addressArray.length > 0) {
           return {
             address: addressArray[0],
-            status: "👆🏽 Write a message in the text-field above.",
+            status: "Send the elements and their cost to smart contract.",
           };
         } else {
           return {
             address: "",
-            status: "🦊 Connect to Metamask using the top right button.",
+            status: "🦊 Connect to Metamask using Connect Wallet button.",
           };
         }
       } catch (err) {

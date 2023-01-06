@@ -12,7 +12,17 @@ import GetAppIcon from '@mui/icons-material/GetApp';
 import {GLTFExporter} from "three/examples/jsm/exporters/GLTFExporter";
 import "@google/model-viewer/dist/model-viewer";
 
+import { useStore } from "../../hooks/useStore";
+
+
+
 const Dashboard = () => {
+    const [storedElements] = useStore((state) => [
+        state.elements
+    ])
+
+    const [addElement, deleteElement, updateElement, updateSubset] = useStore((state) => [state.addElement, state.deleteElement, state.updateElement, state.updateSubset])
+    
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
     
@@ -27,22 +37,57 @@ const Dashboard = () => {
     // List of selected elements
     const [selectedData, setSelectedData] = useState([]);
 
+    const handleDeleteElement = (globalId, modelId) => {
+        debugger;
+        deleteElement(globalId);
+        removeColor(modelId);
+    }
+
+    const removeColor = (id) => {
+        debugger;
+        
+        const scene = viewer.context.getScene();
+        // get previous subset from store
+        const storeIndex = storedElements.findIndex((elem) => elem.subsetId === id);
+
+        if (storeIndex !== -1) {
+            const previousSubsetId = storedElements[storeIndex].subsetId;
+
+            const prevSubset = scene.getObjectById(previousSubsetId);
+            if (prevSubset) {
+                scene.remove(prevSubset);
+            }
+        }
+
+    }
+
     const handleSaveData = (newElement) => {        
         // To do: check if the new element already exists in the array
         // For example: when changing the date a previous element
-        setSelectedData( oldArray => {
-            const elementIndex = oldArray.findIndex((elem) => elem.GlobalId === newElement.GlobalId);
-            if (elementIndex !== -1) {
-                // updating to new element
-                oldArray[elementIndex] = newElement;
-                localStorage.setItem("elements",JSON.stringify([...oldArray]));
-                return [...oldArray];
-            }
-            else {
-                localStorage.setItem("elements",JSON.stringify([...oldArray,newElement]));
-                return [...oldArray, newElement];
-            }            
-        } );
+        debugger;
+        if (storedElements.findIndex((elem) => elem.GlobalId === newElement.GlobalId) === -1) {
+
+            addElement(newElement);
+        }
+        else {
+            updateElement(newElement);
+        }
+
+        // console.log(storedElements);
+        // console.log(storedElements);
+        // setSelectedData( oldArray => {
+        //     const elementIndex = oldArray.findIndex((elem) => elem.GlobalId === newElement.GlobalId);
+        //     if (elementIndex !== -1) {
+        //         // updating to new element
+        //         oldArray[elementIndex] = newElement;
+        //         localStorage.setItem("elements",JSON.stringify([...oldArray]));
+        //         return [...oldArray];
+        //     }
+        //     else {
+        //         localStorage.setItem("elements",JSON.stringify([...oldArray,newElement]));
+        //         return [...oldArray, newElement];
+        //     }            
+        // } );
         
     }
 
@@ -99,6 +144,21 @@ const Dashboard = () => {
         
         viewer.IFC.loader.ifcManager.removeSubset(modelId, undefined);
 
+        debugger;
+
+        const scene = viewer.context.getScene();
+        // get previous subset from store
+        const storeIndex = storedElements.findIndex((elem) => elem.ModelId === id);
+
+        if (storeIndex !== -1) {
+            const previousSubsetId = storedElements[storeIndex].subsetId;
+
+            const prevSubset = scene.getObjectById(previousSubsetId);
+            if (prevSubset) {
+                scene.remove(prevSubset);
+            }
+        }
+
         // Creates subset material
         const mat = new MeshLambertMaterial({
             transparent: true,
@@ -107,9 +167,8 @@ const Dashboard = () => {
             depthTest: true,
         })
         // console.log(viewer);
-        const scene = viewer.context.getScene();
+        
         // console.log(scene);
-
         // Creates subset
         const result = viewer.IFC.loader.ifcManager.createSubset({
             modelID: modelId,
@@ -119,8 +178,11 @@ const Dashboard = () => {
             removePrevious: false
         });
         // console.log(result);
-        
+        // We should save the id of the created subset to remove it before adding the next color
+        // also to remove it completely when we delete the row
         scene.add(result);
+
+        updateSubset(id, result.id);
         
         setViewer(viewer);
 
@@ -199,12 +261,12 @@ const Dashboard = () => {
                         <p>Project Database</p>
                         <GetAppIcon/>
                     </div>      
-                    <ElementTable data={selectedData}/>
+                    <ElementTable data={storedElements} onDelete={handleDeleteElement}/>
                 </div> 
-                <div className="arContainer">
+                {/* <div className="arContainer">
                     <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" > </model-viewer>
                     <button className="formButton" onClick={exportScene}> AR</button>
-                </div>
+                </div> */}
             </div>          
         </div>
     )

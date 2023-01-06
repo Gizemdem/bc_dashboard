@@ -1,13 +1,13 @@
-import "./viewerContainer.scss";
+import "./costViewer.scss";
 import React, { useState, forwardRef } from "react";
 
-import { StatusPopover } from "../statusPopover/StatusPopover";
+import { CostPopover } from "./CostPopover";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
-const ViewerContainer = forwardRef((props, ref) => {
+const CostViewer = forwardRef((props, ref) => {
   
   const [anchorElem, setAnchorElem] = useState();
   const [curIfcRecords, setIfcRecords] = useState();
@@ -42,11 +42,8 @@ const ViewerContainer = forwardRef((props, ref) => {
           // convert props to record
           if (props) {
             let ifcRecords = {};
-            ifcRecords['Entity Type'] = type;
             ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
-            ifcRecords['Name'] = props.Name && props.Name?.value;
-            ifcRecords['ModelId'] = result.id;
-            // ifcRecords['ObjectType'] = props.ObjectType && props.ObjectType?.value;
+            ifcRecords['type'] = type;
             setIfcRecords(ifcRecords);
           }  
           setAnchorElem(event.target);
@@ -54,10 +51,10 @@ const ViewerContainer = forwardRef((props, ref) => {
     }
   };
 
-  const updateColors = (status) => {
+  const updateColors = () => {
     // we pass status to know which color to apply on the element
-    // status is one of "On progress" , "Payed" ..
-    changeColor(selected.id, status);
+    // status is one of "On progress" , "Payed" .
+    changeColor(selected.id);
   }
 
   // Create clipping plane
@@ -78,7 +75,7 @@ const ViewerContainer = forwardRef((props, ref) => {
   
   return (
     < >
-      <div className= "viewerContainer"
+      <div className= "costViewer"
         ref={ref}
         onDoubleClick={ifcOnClick}
         onContextMenu={ifcOnRightClick}
@@ -89,7 +86,7 @@ const ViewerContainer = forwardRef((props, ref) => {
         <Box sx={{ width: '100%' }}>
         </Box>
       </div>
-      <StatusPopover 
+      <CostPopover 
         id={id}
         open={open}
         anchorEl={anchorElem}
@@ -102,4 +99,4 @@ const ViewerContainer = forwardRef((props, ref) => {
   );
 });
 
-export {ViewerContainer}
+export {CostViewer}

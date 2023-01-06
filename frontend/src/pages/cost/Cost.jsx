@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./cost.scss";
 import CostTable from "./CostTable";
 import {Color, MeshLambertMaterial} from "three";
-import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
+import { CostViewer } from "./CostViewer";
 import { IfcViewerAPI } from "web-ifc-viewer";
 
 import {
@@ -22,9 +22,9 @@ const Cost = ()=>{
     //State variables for contract
     const [walletAddress, setWallet] = useState("");
     const [status, setStatus] = useState("");
-    const [message, setMessage] = useState("No connection to the network.");
     const [elements, setElements] = useState([]);
     const contractorWalletAddress = "0xaCd2741F67F8Dc0633256c77Ed1cfE05E0a2c54b";
+    const [selectedData, setSelectedData] = useState([]);
     //called only once
     useEffect(() => {
         async function fetchWallet() {
@@ -41,7 +41,10 @@ const Cost = ()=>{
     };
 
     const onUpdatePressed = async () => {
-        const { status } = await setConstructionElements(walletAddress, contractorWalletAddress, ["wall", "column","window"],[150,100,50]);
+        debugger;
+        const {ids,costs} = getIdandCost(selectedData);
+
+        const { status } = await setConstructionElements(walletAddress, contractorWalletAddress, ids,costs);
         setStatus(status);
     };
     const payApprovedElements = async () => {
@@ -56,21 +59,20 @@ const Cost = ()=>{
             viewer.IFC.selector.unHighlightIfcItems();
         }
     }
-    // List of selected elements
-    const dummyData = [
-        {
-            id: '12345',
-            price: 500,
-        },
-        {
-            id: '12346',
-            price: 100,
-        },
-    ]
-    const [selectedData, setSelectedData] = useState(dummyData);
+    // List of selected elements   
 
+    const getIdandCost = (data) => {
+        let costs = [];
+        let ids = [];
+        for (let elem of data) {
+            costs.push(elem['cost']); 
+            ids.push(elem['GlobalId']);
+        }
+        return {ids,costs}
+
+    }
     const handleSaveData = (newElement) => {
-        
+        debugger;
         // To do: check if the new element already exists in the array
         // For example: when changing the date a previous element
         setSelectedData( oldArray => {
@@ -108,18 +110,19 @@ const Cost = ()=>{
         }
     }, [ifcContainer.current]);
 
-    const changeColor = (id, status) => {
+    const changeColor = (id) => {
+        debugger;
         // access the model and change color according to status
         console.log("Changing color");
-        console.log(status);
-        let color = new Color(0.0 ,0.0 ,0.0);
+        // console.log(status);
+        let color = new Color('blue');
         
-        if (status ==="Assigned") {
-            color = new Color('#ffdfad');
-        }
-        else if(status === "Doing"){
-            color = new Color('#F8E220');
-        }
+        // if (status ==="Assigned") {
+        //     color = new Color('#ffdfad');
+        // }
+        // else if(status === "Doing"){
+        //     color = new Color('#F8E220');
+        // }
         
         // ToDo! this only works if there is only one ifc model
         const modelId = 0;
@@ -159,40 +162,39 @@ const Cost = ()=>{
             <div className="homeContainer">
                 <Navbar/>
                 <div className="rowContainer">
-                    <div className="container">
-                        <ViewerContainer className="viewercontainer" 
-                            ref={ifcContainer}
-                            viewer={viewer}
-                            setSelectedData={handleSaveData}
-                            changeColor={changeColor}
-                        />           
+                    <div style={{width:"600px"}}>
+                        <div className="container" >
+                            <CostViewer className="costViewer"
+                                ref={ifcContainer}
+                                viewer={viewer}
+                                setSelectedData={handleSaveData}
+                                changeColor={changeColor}
+                            />           
+                        </div>
                     </div>
-                    <div className="container">
-                        <p>Cost Input</p>
-                        <CostTable data={selectedData}/>
-                        <button id="walletButton" onClick={connectWalletPressed}>
-                            {walletAddress.length > 0 ? (
-                                "Connected: " +
-                                String(walletAddress).substring(0, 6) +
-                                "..." +
-                                String(walletAddress).substring(38)
-                            ) : (
-                                <span>Connect Wallet</span>
-                            )}
-                        </button>
-                    </div>
-                    <div>
-                        <input
-                        type="text"
-                        placeholder="Add elements and its cost in your smart contract."
-                        onChange={(e) => setElements(e.target.value)}
-                        value={elements}
-                        />
-                        <p id="status">{status}</p>
-                        <button id="publishButton" onClick={onUpdatePressed}>
-                        Update
-                        </button>
-                        <button onClick={payApprovedElements}>Sent Transaction</button>
+                    <div style={{width:"600px"}}>
+                        <div className="containerTable">
+                            <p classname="message"id="status">{status}</p>
+                            <hr></hr>
+                            <div className="bottom">
+                                <button className="formButton" id="walletButton" onClick={connectWalletPressed}>
+                                    {walletAddress.length > 0 ? (
+                                        "Connected: " +
+                                        String(walletAddress).substring(0, 6) +
+                                        "..." +
+                                        String(walletAddress).substring(38)
+                                    ) : (
+                                        <span>Connect Wallet</span>
+                                    )}
+                                </button>
+                                <button className="formButton" id="publishButton" onClick={onUpdatePressed}>
+                                    Send Elements and Cost
+                                </button>
+                                {/* <button onClick={payApprovedElements}>Sent Transaction</button> */}                            
+                            </div>
+                            <p >Cost Input</p>
+                            <CostTable className="top" data={selectedData}/>
+                        </div>    
                     </div>
                 </div>
             </div>

@@ -12,8 +12,9 @@ const ElementTable = (props) => {
 
   const data = props.data;
 
-  const handleDelete = (id) =>{
-    data(data.filter((item) => item.id !== id));
+  const handleDelete = (globalId, modelId) =>{
+    // data(data.filter((item) => item.id !== id));
+    props.onDelete(globalId, modelId);
   }
   
   
@@ -45,7 +46,7 @@ const ElementTable = (props) => {
               <TableCell className="tableCell">{row['Date']}</TableCell>
               <TableCell className="tableCell" > 
                 {/* needs an action */}
-                <DeleteOutlineOutlinedIcon onClick={() => handleDelete (row['GlobalId'])} />                
+                <DeleteOutlineOutlinedIcon onClick={() => handleDelete(row['GlobalId'], row['subsetId'])} />                
               </TableCell>
             </TableRow>
           ))}
