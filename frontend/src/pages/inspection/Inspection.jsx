@@ -19,6 +19,8 @@ import "@google/model-viewer/dist/model-viewer";
 const Inspection = () => {
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
+
+    const arViewer = createRef();
     
     window.onkeydown = (event) => {
         if(event.code === 'Escape') {
@@ -207,13 +209,23 @@ const Inspection = () => {
                         <ToggleButton value="ar">AR</ToggleButton>
                     </ToggleButtonGroup>
                     {toggleSwitch ==="ar"? 
-                    <model-viewer src={modelURL} alt="" camera-controls ar ar-placement="floor" ar-scale="fixed" className="viewerContainer" > </model-viewer>
+                    <model-viewer
+                        ref={arViewer}
+                        src={modelURL} 
+                        alpha-test="0.5"
+                        alt="" 
+                        camera-controls 
+                        ar 
+                        ar-placement="floor" 
+                        ar-scale="fixed" 
+                        className="viewerContainer" > 
+                    </model-viewer>
                     :  
                     <ViewerContainer className="viewerContainer"
                         ref={ifcContainer}
                         viewer={viewer}
                         setSelectedData={handleSaveData}
-                        changeColor={changeColor}
+                        changeColor={changeColor}                      
                     />
                     }
 
