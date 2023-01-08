@@ -8,7 +8,7 @@ import Table from "../../components/table/Table";
 const Projects= () => {
 
     // project list path
-    const projectFiles= ["/IFCprojects/01.ifc", "/IFCprojects/BuroHalle_Einbauteile.ifc","/IFCprojects/GB_City.ifc", "/IFCprojects/room.blend.ifc"]; 
+    const projectFiles= ["/IFCprojects/01.ifc", "/IFCprojects/BuroHalle_Einbauteile.ifc","/IFCprojects/01.ifc", "/IFCprojects/room.blend.ifc"]; 
     return(
         <div className="projects">
             <Sidebar/>
@@ -18,9 +18,9 @@ const Projects= () => {
                     <span className="title">PROJECTS</span>
                     <div className="folderComponent">                        
                         <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[0]} projectName="Test Project 01"/>
-                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[1]} projectName="Bauteile Halle"/>
-                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[2]} projectName="GB City"/>
-                        <ProjectFolder img={process.env.PUBLIC_URL +"/add_folder_icon.png"} path={projectFiles[3]} projectName="Test Project 4"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[1]} projectName="Test Project 02"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[2]} projectName="Test Project 03"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL +"/add_folder_icon.png"} path={projectFiles[3]} projectName="Test Project 04"/>
                     </div>
                 </div> 
                 <div className="collaboratorContainer">
