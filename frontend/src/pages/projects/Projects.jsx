@@ -16,8 +16,7 @@ const Projects= () => {
                 <Navbar/>
                 <div className="folderContainer">
                     <span className="title">PROJECTS</span>
-                    <div className="folderComponent">
-                        
+                    <div className="folderComponent">                        
                         <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[0]} projectName="Test Project 01"/>
                         <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[1]} projectName="Bauteile Halle"/>
                         <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[2]} projectName="GB City"/>
