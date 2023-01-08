@@ -190,7 +190,12 @@ const Inspection = () => {
 
                 let color = {...scene.children[ifcIndex].material[j].color};
                 let newColor = new Color (color.r, color.g, color.b);
-                let material = new MeshStandardMaterial({color: newColor});
+                let material = new MeshStandardMaterial({
+                    color: newColor,
+                    transparent: true,
+                    opacity: 0.5
+                });
+                
                 scene.children[ifcIndex].material[j] = material;
             }
             exportGLTF(scene)
