@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 import Widget from "../../components/widget/Widget"
 
-import {Color, MeshLambertMaterial} from "three";
+import {Color, MeshLambertMaterial, MeshStandardMaterial} from "three";
 import { ViewerContainer } from "../../components/viewerContainer/ViewerContainer";
 import React, { createRef, useState, useEffect } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
@@ -20,7 +20,6 @@ const Inspection = () => {
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
 
-    const arViewer = createRef();
     
     window.onkeydown = (event) => {
         if(event.code === 'Escape') {
@@ -170,14 +169,31 @@ const Inspection = () => {
             (error)=>{console.log(error)},
             options
         )
+
     }
 
 
     //button onClick AR
     const exportScene =()=>{
         if (viewer){
-            console.log(viewer.IFC.context.scene.scene)
-            exportGLTF(viewer.IFC.context.scene.scene)
+            let scene = viewer.IFC.context.scene.scene;
+            // console.log(viewer.IFC.context.scene.scene)
+            let ifcIndex = 0;
+            for (let i = 0; i < scene.children.length; i++) {
+                if (scene.children[i].ifcManager !== undefined) {
+                    ifcIndex = i;
+                }
+            }
+            
+            debugger;
+            for (let j = 0; j < scene.children[ifcIndex].material.length; j ++) {
+
+                let color = {...scene.children[ifcIndex].material[j].color};
+                let newColor = new Color (color.r, color.g, color.b);
+                let material = new MeshStandardMaterial({color: newColor});
+                scene.children[ifcIndex].material[j] = material;
+            }
+            exportGLTF(scene)
         }
     } 
     //create a link and download
@@ -189,6 +205,16 @@ const Inspection = () => {
         // link.download = filename;
         // link.click();
         setModelURL(link.href);
+        debugger;
+        const arViewer = document.querySelector("model-viewer");
+        arViewer.addEventListener('load', (e) => {
+            console.log("loaded ar viewer");
+            debugger;
+            let viewer = document.querySelector("model-viewer");
+            viewer.model?.materials.forEach((mat) => mat.setAlphaCutoff(0.5))
+            // console.log(e);
+        })
+        // console.log(arViewer);
     }
     const [modelURL, setModelURL] = useState("");
     
@@ -210,15 +236,16 @@ const Inspection = () => {
                     </ToggleButtonGroup>
                     {toggleSwitch ==="ar"? 
                     <model-viewer
-                        ref={arViewer}
                         src={modelURL} 
-                        alpha-test="0.5"
+                        alpha-test="1"
                         alt="" 
                         camera-controls 
                         ar 
                         ar-placement="floor" 
                         ar-scale="fixed" 
+                        load={()=> (console.log("loading ar model"))}
                         className="viewerContainer" > 
+                        
                     </model-viewer>
                     :  
                     <ViewerContainer className="viewerContainer"
