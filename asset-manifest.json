@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/bc_dashboard/static/css/main.9fe28644.css",
-    "main.js": "/bc_dashboard/static/js/main.0fd400a0.js",
+    "main.js": "/bc_dashboard/static/js/main.8279462c.js",
     "index.html": "/bc_dashboard/index.html",
     "main.9fe28644.css.map": "/bc_dashboard/static/css/main.9fe28644.css.map",
-    "main.0fd400a0.js.map": "/bc_dashboard/static/js/main.0fd400a0.js.map"
+    "main.8279462c.js.map": "/bc_dashboard/static/js/main.8279462c.js.map"
   },
   "entrypoints": [
     "static/css/main.9fe28644.css",
-    "static/js/main.0fd400a0.js"
+    "static/js/main.8279462c.js"
   ]
 }
