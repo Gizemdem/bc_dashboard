@@ -6,7 +6,7 @@ import CostTable from "./CostTable";
 import {Color, MeshLambertMaterial} from "three";
 import { CostViewer } from "./CostViewer";
 import { IfcViewerAPI } from "web-ifc-viewer";
-
+import { useStore } from "../../hooks/useStore";
 import {
     progressPaymentContract,
     connectWallet,
@@ -15,7 +15,14 @@ import {
     payElements,
 } from "../../util/interact.js";
 
+
 const Cost = ()=>{
+
+    const [addCost, updateCost, deleteCost ] = useStore((state) => [state.addCost, state.updateCost, state.deleteCost ])
+    const [storedCost] = useStore((state) => [
+        state.costs
+    ])
+
     const ifcContainer = createRef();
     const [viewer, setViewer] = useState();
 
@@ -73,20 +80,14 @@ const Cost = ()=>{
     }
     const handleSaveData = (newElement) => {
         debugger;
-        // To do: check if the new element already exists in the array
-        // For example: when changing the date a previous element
-        setSelectedData( oldArray => {
-            const elementIndex = oldArray.findIndex((elem) => elem.GlobalId === newElement.GlobalId);
-            if (elementIndex !== -1) {
-                // updating to new element
-                oldArray[elementIndex] = newElement;
+        // To do: Save with UseStore
+        if (storedCost.findIndex((elem) => elem.GlobalId === newElement.GlobalId) === -1) {
 
-                return [...oldArray];
-            }
-            else {
-                return [...oldArray, newElement];
-            }            
-        } );
+            addCost(newElement.GlobalId, newElement.cost);
+        }
+        else {
+            updateCost(newElement.GlobalId, newElement.cost);
+        }
     }
 
     useEffect(() => {
@@ -193,7 +194,7 @@ const Cost = ()=>{
                                 {/* <button onClick={payApprovedElements}>Sent Transaction</button> */}                            
                             </div>
                             <p >Cost Input</p>
-                            <CostTable className="top" data={selectedData}/>
+                            <CostTable className="top" data={storedCost} handleDelete={deleteCost}/>
                         </div>    
                     </div>
                 </div>

@@ -11,12 +11,9 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 const CostTable = (props) => {
 
   const data = props.data;
-
-  const handleDelete = (id) =>{
-    data(data.filter((item) => item.id !== id));
-  }
+  const handleDelete = props.handleDelete;
   
-  console.log(data);
+  // console.log(data);
 
   return (
     <TableContainer component={Paper} className="costTable">
@@ -25,7 +22,7 @@ const CostTable = (props) => {
           <TableRow>
             {/* <TableCell className="tableCell">ID</TableCell> */}
             <TableCell className="tableCell">Global Id</TableCell>
-            <TableCell className="tableCell">Type</TableCell>
+            {/* <TableCell className="tableCell">Type</TableCell> */}
             <TableCell className="tableCell">Cost</TableCell>
             <TableCell className="tableCell">Edit</TableCell>
           </TableRow>
@@ -34,7 +31,7 @@ const CostTable = (props) => {
           {data.map((row) => (
             <TableRow key={row['GlobalId']}>
               <TableCell className="tableCell">{row['GlobalId']}</TableCell>
-              <TableCell className="tableCell">{row['type']}</TableCell>
+              {/* <TableCell className="tableCell">{row['Entity Type']}</TableCell> */}
               <TableCell className="tableCell">{row['cost']}</TableCell>
               <TableCell className="tableCell" > 
                 {/* needs an action */}

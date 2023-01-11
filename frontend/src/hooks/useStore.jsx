@@ -3,7 +3,9 @@ import {persist} from 'zustand/middleware';
 
 export const useStore = create(
     persist((set) => ({
+        // Contains the 
         elements: [],
+        costs: [],
         addElement: (newElement) => {
             
             set((prev) => (
@@ -35,7 +37,24 @@ export const useStore = create(
                 elem['ModelId'] === modelId
                 ? ({...elem, subsetId: subsetId}) : elem
             )}))
+        },
+        addCost: (globalId, cost) => {
+            set((prev) => ({
+                costs: [...prev.costs, { GlobalId: globalId, cost: cost }]
+            }))
+        },
+        updateCost: (globalId, newCost) => {
+            set((prev) => ({
+                costs: prev.costs.map((elem) => 
+                elem.GlobalId === globalId ? ({GlobalId: globalId, cost: newCost}) : elem)
+            }))
+        },
+        deleteCost: (globalId) => {
+            set((prev) => ({
+                costs: prev.costs.filter((elem) => elem.GlobalId !== globalId)
+            }))
         }
+
     }),
         // second argument for persist()
         {name: 'element-storage'})

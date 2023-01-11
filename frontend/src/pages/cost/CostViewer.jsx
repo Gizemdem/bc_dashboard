@@ -43,7 +43,7 @@ const CostViewer = forwardRef((props, ref) => {
           if (props) {
             let ifcRecords = {};
             ifcRecords['GlobalId'] = props.GlobalId && props.GlobalId?.value;
-            ifcRecords['type'] = type;
+            ifcRecords['Entity Type'] = type;
             setIfcRecords(ifcRecords);
           }  
           setAnchorElem(event.target);

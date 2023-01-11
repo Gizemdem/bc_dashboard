@@ -6,8 +6,33 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useStore } from "../../hooks/useStore";
+
+
+const dollarUSLocale = Intl.NumberFormat('en-US');
+const euroDELocale = Intl.NumberFormat('de-DE');
+const deDate = Intl.DateTimeFormat("de-DE")
+
 
 const TotalCostFromContract = () => {
+
+  const [storedCost] = useStore((state) => [
+    state.costs
+  ])
+  const [storedElements] = useStore((state) => [
+    state.elements
+  ])
+
+  const totalCost = () => {
+
+    let total = 0;
+    storedCost?.forEach(element => {
+      if (storedElements.find(elem => elem.GlobalId === element.GlobalId)){
+        total += element.cost;
+      }
+    });
+    return `${euroDELocale.format(total)} €`;
+  }
 
   return (
     <TableContainer component={Paper} className="table">
@@ -22,8 +47,8 @@ const TotalCostFromContract = () => {
         <TableBody>          
             <TableRow>
                 <TableCell className="tableCell">Main Contractor</TableCell>
-              <TableCell className="tableCell">February 2020</TableCell>
-              <TableCell className="tableCell">60400</TableCell>
+              <TableCell className="tableCell">December 2023</TableCell>
+              <TableCell className="tableCell">{totalCost(storedCost)}</TableCell>
             </TableRow>
         </TableBody>
       </Table>
