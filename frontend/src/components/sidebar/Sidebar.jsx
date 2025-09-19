@@ -19,9 +19,7 @@ const Sidebar = (props) =>{
     return(
         <div className="sidebar">
             <div className="top">
-                <Link to="/" style= {{textDecoration:"none"}} className="logo">
-                    <img className="image" src={process.env.PUBLIC_URL +"/logo.png"} alt=""></img>
-                </Link>
+                <h3>Smart Payment</h3>
             </div>
             <hr className="hr"/>
             <div className="center"> 
