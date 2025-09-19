@@ -3,34 +3,33 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./projects.scss";
 import ProjectFolder from "../../components/projectFolder/ProjectFolder";
-import Table from "../../components/table/Table"; 
+import Table from "../../components/table/Table";
 
-const Projects= () => {
+const Projects = () => {
 
     // project list path
-    const projectFiles= ["/IFCprojects/01.ifc", "/IFCprojects/BuroHalle_Einbauteile.ifc","/IFCprojects/GB_City.ifc", "/IFCprojects/room.blend.ifc"]; 
-    return(
+    const projectFiles = ["/IFCprojects/Ifc4_Revit_ARC.ifc", "/IFCprojects/Ifc4_Revit_MEP.ifc", "/IFCprojects/Ifc4_Revit_STR", "/IFCprojects/room.blend.ifc"];
+    return (
         <div className="projects">
-            <Sidebar/>
+            <Sidebar />
             <div className="projectsContainer">
-                <Navbar/>
+                <Navbar />
                 <div className="folderContainer">
                     <span className="title">PROJECTS</span>
                     <div className="folderComponent">
-                        
-                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[0]} projectName="Test Project 01"/>
-                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[1]} projectName="Bauteile Halle"/>
-                        <ProjectFolder img={process.env.PUBLIC_URL +"/folder_icon.png"} path={projectFiles[2]} projectName="GB City"/>
-                        <ProjectFolder img={process.env.PUBLIC_URL +"/add_folder_icon.png"} path={projectFiles[3]} projectName="Test Project 4"/>
+                        <ProjectFolder img={process.env.PUBLIC_URL + "/folder_icon.png"} path={projectFiles[0]} projectName="Test Project ARC" />
+                        <ProjectFolder img={process.env.PUBLIC_URL + "/folder_icon.png"} path={projectFiles[1]} projectName="Test Project MEP" />
+                        <ProjectFolder img={process.env.PUBLIC_URL + "/folder_icon.png"} path={projectFiles[2]} projectName="Test Project STR" />
+                        <ProjectFolder img={process.env.PUBLIC_URL + "/add_folder_icon.png"} path={projectFiles[3]} projectName="Test Project 4" />
                     </div>
-                </div> 
+                </div>
                 <div className="collaboratorContainer">
                     <div className="topContainer">
                         <p>COLLABORATORS</p>
                         <p className="uploadbutton">Upload Excel</p>
-                    </div>   
-                    <Table />                   
-                </div>               
+                    </div>
+                    <Table />
+                </div>
             </div>
         </div>
     )
